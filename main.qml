@@ -72,6 +72,7 @@ Window {
             Button {
                 text: "Zoom camera"
                 onClicked: { scene.OnClickButtonResetCamera()}
+                 icon.source: "qrc:/Assets/arrow.png"
             }
 
             Button {
