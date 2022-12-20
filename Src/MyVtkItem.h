@@ -20,6 +20,10 @@ public:
     /// Open file button click
     /// </summary>
     Q_INVOKABLE void OnClickButtonOpenDirectory(QString directory);
+    /// <summary>
+    /// Open file button click
+    /// </summary>
+    Q_INVOKABLE void OnClickButtonResetCamera();
 
 signals:
     void showMessageBox();

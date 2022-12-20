@@ -1,6 +1,6 @@
 #include "MyVtkData.h"
 
-#include "LayersConfiguration.h"
+#include "DicomRenderModule/LayersConfiguration.h"
 
 #include <vtkNew.h>
 #include <vtkProperty.h>
@@ -134,4 +134,8 @@ bool MyVtkData::CheckReader(vtkSmartPointer<vtkDICOMReader> reader, vtkSmartPoin
     }
 
     return false;
+}
+
+void MyVtkData::ZoomToExtent() {
+    _renderer->ResetCamera();
 }

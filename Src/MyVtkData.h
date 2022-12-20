@@ -1,13 +1,17 @@
 #ifndef MYVTKDATA_H
 #define MYVTKDATA_H
 
+#include "Src/DicomRenderModule/Callbacks.h"
+#include "Src/DicomRenderModule/Representation.h"
+
+#include <QString.h>
+
 #include <vtkObject.h>
 #include <vtkObjectFactory.h>
 #include <vtkRenderer.h>
 #include <vtkSmartPointer.h>
 #include <vtkVolumeProperty.h>
 #include <vtkImageReader2.h>
-#include <QString.h>
 #include <vtkDICOMReader.h>
 
 struct MyVtkData : vtkObject
@@ -17,9 +21,14 @@ public:
     vtkNew<vtkVolumeProperty> _volumeProperty;
     // represents a volume (data & properties) in a rendered scene
     vtkNew<vtkVolume> _volume;
+    // app callbacks
+    std::shared_ptr<Callbacks> _callbacks;
+
     // reader for first buffer
     vtkSmartPointer<vtkImageReader2> _reader;
+
     vtkNew<vtkRenderer> _renderer;
+
     vtkSmartPointer<vtkRenderWindow> _renderWindow;
 
 public:
@@ -65,6 +74,11 @@ public:
 
     [[nodiscard]] bool CheckReader(vtkSmartPointer<vtkDICOMReader> reader, vtkSmartPointer<vtkImageReader2> dataSet);
 
+
+    /// <summary>
+    /// Zoom to the extent of the data set in the scene
+    /// </summary>
+    void ZoomToExtent();
 };
 
 #endif // MYVTKDATA_H

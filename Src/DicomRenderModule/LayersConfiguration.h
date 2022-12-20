@@ -1,5 +1,7 @@
 #pragma once
 
+#include "AbstractCallback.h"
+
 #include <vtkColorTransferFunction.h>
 #include <vtkPiecewiseFunction.h>
 #include <vtkVolumeProperty.h>

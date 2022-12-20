@@ -60,7 +60,7 @@ Window {
         RowLayout {
             Button {
                 text: "Zoom camera"
-                onClicked: { }
+                onClicked: { scene.OnClickButtonResetCamera()}
             }
 
             Button {
