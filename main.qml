@@ -19,7 +19,7 @@ Window {
       color: "#272727"
     }
 
-    Vtk.MyVtkItem {
+    Vtk.SceneVtkItem {
         id: scene
         anchors.fill: parent
         anchors.margins: 30

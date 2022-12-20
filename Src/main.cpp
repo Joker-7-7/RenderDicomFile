@@ -5,7 +5,7 @@
 
 #include <QVTKRenderWindowAdapter.h>
 
-#include "MyVtkItem.h"
+#include "SceneVtkItem.h"
 
 extern "C" {
     _declspec(dllexport) int NvOptimusEnablement = 1;
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<MyVtkItem>("Vtk", 1, 0, "MyVtkItem");
+    qmlRegisterType<SceneVtkItem>("Vtk", 1, 0, "SceneVtkItem");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
