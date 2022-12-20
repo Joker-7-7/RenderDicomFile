@@ -12,8 +12,17 @@ public:
 
     vtkUserData initializeVTK(vtkRenderWindow *renderWindow) override;
 
+    /// <summary>
+    /// Open file button click
+    /// </summary>
+    Q_INVOKABLE void OnClickButtonOpenFile(QString singleFile);
+    /// <summary>
+    /// Open file button click
+    /// </summary>
     Q_INVOKABLE void OnClickButtonOpenDirectory(QString directory);
 
+signals:
+    void showMessageBox();
 public:
     MyVtkData* _sceneData;
 

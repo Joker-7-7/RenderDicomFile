@@ -22,8 +22,15 @@ QQuickVtkItem::vtkUserData MyVtkItem::initializeVTK(vtkRenderWindow *renderWindo
 
 void MyVtkItem::OnClickButtonOpenDirectory(QString directory) {
     qDebug() << "Zoom camera";
-    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this, &directory] (vtkRenderWindow* , const vtkUserData& ){
-
+    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this, directory] (vtkRenderWindow* , const vtkUserData& ){
+        if(!_sceneData->OpenDirectory(directory))
+        {
+            emit showMessageBox();
+        }
     });
     QQuickVtkItem::dispatch_async(foo);
+}
+
+void MyVtkItem::OnClickButtonOpenFile(QString singleFile) {
+
 }
