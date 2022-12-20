@@ -2,7 +2,6 @@
 
 #include <vtkInteractorStyleTrackballCamera.h>
 #include <vtkMinimalStandardRandomSequence.h>
-#include <vtkNamedColors.h>
 #include <vtkNew.h>
 #include <vtkObjectFactory.h>
 #include <vtkPolyDataMapper.h>
@@ -19,7 +18,6 @@ MyVtkData::MyVtkData() {
 }
 
 void MyVtkData::SetupRender() {
-    vtkNew<vtkNamedColors> colors;
 
     _renderer->SetBackground(0.3, 0.3, 0.3);
     int numberOfSpheres = 10;
@@ -56,8 +54,7 @@ void MyVtkData::SetupRender() {
         actor->GetProperty()->SetDiffuseColor(r, g, b);
         actor->GetProperty()->SetDiffuse(0.8);
         actor->GetProperty()->SetSpecular(0.5);
-        actor->GetProperty()->SetSpecularColor(
-                colors->GetColor3d("White").GetData());
+        actor->GetProperty()->SetSpecularColor(0.0, 0.0, 0.0);
         actor->GetProperty()->SetSpecularPower(30.0);
         _renderer->AddActor(actor);
     }
