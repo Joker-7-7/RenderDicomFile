@@ -32,6 +32,13 @@ void MyVtkItem::OnClickButtonOpenDirectory(QString directory) {
 
 void MyVtkItem::OnClickButtonOpenFile(QString singleFile) {
 
+    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this, singleFile] (vtkRenderWindow* , const vtkUserData& ){
+        if(!_sceneData->OpenSingleFile(singleFile))
+        {
+            emit showMessageBox();
+        }
+    });
+    QQuickVtkItem::dispatch_async(foo);
 }
 
 void MyVtkItem::OnClickButtonResetCamera() {

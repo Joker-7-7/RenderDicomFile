@@ -33,6 +33,17 @@ Window {
         visible: true
         running: false
     }
+
+    FileDialog {
+        id: fileDialog
+        nameFilters: ["*.dcm"]
+        onAccepted: function() {
+            scene.OnClickButtonOpenFile(selectedFile);
+            indicator.running = false;
+        }
+        onRejected: progressBar.running = false;
+    }
+
     FolderDialog {
         id: folderDialog
         onAccepted: function() {
@@ -68,6 +79,14 @@ Window {
                 onClicked: function() {
                     indicator.running = true;
                     folderDialog.open();
+                }
+            }
+
+            Button {
+                text: "Open single"
+                onClicked: function() {
+                    indicator.running = true;
+                    fileDialog.open();
                 }
             }
         }
