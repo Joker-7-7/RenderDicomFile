@@ -41,7 +41,7 @@ Window {
             scene.OnClickButtonOpenFile(selectedFile);
             indicator.running = false;
         }
-        onRejected: progressBar.running = false;
+        onRejected: indicator.running = false;
     }
 
     FolderDialog {
@@ -69,16 +69,17 @@ Window {
 
     ToolBar {
         RowLayout {
-            Button {
-                text: "Zoom camera"
-                onClicked: { scene.OnClickButtonResetCamera()}
-                 icon.source: "qrc:/Assets/arrow.png"
-            }
 
             Button {
                 onClicked: { scene.OnClickButtonRuler()}
                  icon.source: "qrc:/Assets/ruler.png"
             }
+
+            Button {
+                onClicked: { scene.OnClickButtonBoxRep()}
+                 icon.source: "qrc:/Assets/cube.png"
+            }
+
             Button {
                 text: "Open directory"
                 onClicked: function() {
@@ -93,6 +94,11 @@ Window {
                     indicator.running = true;
                     fileDialog.open();
                 }
+            }
+            Button {
+                text: "Zoom camera"
+                onClicked: { scene.OnClickButtonResetCamera()}
+                 icon.source: "qrc:/Assets/arrow.png"
             }
         }
     }

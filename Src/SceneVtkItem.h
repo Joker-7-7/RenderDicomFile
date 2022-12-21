@@ -29,7 +29,10 @@ public:
     /// Ruler button click
     /// </summary>
     Q_INVOKABLE void OnClickButtonRuler();
-
+    /// <summary>
+    /// Clipping Box button click
+    /// </summary>
+    Q_INVOKABLE void OnClickButtonBoxRep();
 signals:
     void showMessageBox();
 public:

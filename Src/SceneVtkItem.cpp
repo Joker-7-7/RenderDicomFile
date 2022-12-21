@@ -50,3 +50,10 @@ void SceneVtkItem::OnClickButtonRuler() {
     });
     QQuickVtkItem::dispatch_async(foo);
 }
+
+void SceneVtkItem::OnClickButtonBoxRep() {
+    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
+        _sceneData->Execute<vtkButtonBoxCallback>();
+    });
+    QQuickVtkItem::dispatch_async(foo);
+}
