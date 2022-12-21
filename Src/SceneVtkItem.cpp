@@ -73,8 +73,14 @@ void SceneVtkItem::OnClickButtonSolidConfig() {
 }
 
 void SceneVtkItem::OnClickButtonSkinConfig() {
-std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
-_sceneData->Execute<LayersConfiguration::vtkSkinConfigCallback>();
+    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
+        _sceneData->Execute<LayersConfiguration::vtkSkinConfigCallback>();
     });
-QQuickVtkItem::dispatch_async(foo);
-}
+    QQuickVtkItem::dispatch_async(foo);
+
+}void SceneVtkItem::OnClickButtonJitteringMode() {
+    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
+        _sceneData->Execute<vtkButtonJitteringModeCallback>();
+    });
+    QQuickVtkItem::dispatch_async(foo);
+    }

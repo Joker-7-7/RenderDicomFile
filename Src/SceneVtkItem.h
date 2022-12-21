@@ -45,6 +45,10 @@ public:
     /// Skin Config button click
     /// </summary>
     Q_INVOKABLE void OnClickButtonSkinConfig();
+    /// <summary>
+    /// Jittering mode button click
+    /// </summary>
+    Q_INVOKABLE void OnClickButtonJitteringMode();
 signals:
     void showMessageBox();
 public:

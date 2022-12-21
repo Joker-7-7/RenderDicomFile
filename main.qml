@@ -112,6 +112,11 @@ Window {
             }
 
             Button {
+                onClicked: { scene.OnClickButtonJitteringMode()}
+                 icon.source: "qrc:/Assets/smoothing.png"
+            }
+
+            Button {
                 text: "Zoom camera"
                 onClicked: { scene.OnClickButtonResetCamera()}
                  icon.source: "qrc:/Assets/arrow.png"
