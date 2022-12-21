@@ -45,8 +45,6 @@ public:
     // twin of the drill
     std::shared_ptr<Drill> _drill;
 
-    vtkNew<vtkRenderWindowInteractor> _iren;
-
     vtkNew<vtkRenderer> _renderer;
 
     vtkSmartPointer<vtkRenderWindow> _renderWindow;
@@ -57,6 +55,7 @@ public:
     vtkTypeMacro(SceneVtkData, vtkObject);
     SceneVtkData();
 
+    void InitSceneVTKData(vtkRenderWindow *renderWindow);
     /// <summary>
     /// Add a data set to the scene
     /// </summary>
@@ -88,6 +87,14 @@ public:
     /// </summary>
     void CreateDrill();
     /// <summary>
+    /// Remove all callbacks in the app
+    /// </summary>
+    void RemoveCallbacks();
+    /// <summary>
+    /// Create all sliders in the app
+    /// </summary>
+    void CreateSliders();
+    /// <summary>
     /// Create all callbcaks in the app
     /// </summary>
     void CreateCallbacks();
@@ -110,6 +117,17 @@ public:
 
     [[nodiscard]] bool CheckReader(vtkSmartPointer<vtkDICOMReader> reader, vtkSmartPointer<vtkImageReader2> dataSet);
 
+public:
+    template<class T>
+    void Execute()
+    {
+        if(_callbacks) {
+            AbstractCallback* callback_ = _callbacks->getCallback<T>();
+            if (callback_) {
+                callback_->Execute(NULL, NULL, NULL);
+            }
+        }
+    }
 
     /// <summary>
     /// Zoom to the extent of the data set in the scene

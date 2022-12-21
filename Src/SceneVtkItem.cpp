@@ -10,13 +10,8 @@ QQuickVtkItem::vtkUserData SceneVtkItem::initializeVTK(vtkRenderWindow *renderWi
 {
     auto vtk = vtkNew<SceneVtkData>();
     _sceneData = vtk;
-
-    // A renderer and render windo
-
-    renderWindow->SetSize(renderWindow->GetScreenSize());
-    renderWindow->AddRenderer(_sceneData->_renderer);
-    renderWindow->SetWindowName("MainWindow");
-    _sceneData->_renderWindow = renderWindow;
+    _sceneData->InitSceneVTKData(renderWindow);
+    // A renderer and render window
 
     return vtk;
 }
@@ -45,6 +40,13 @@ void SceneVtkItem::OnClickButtonOpenFile(QString singleFile) {
 void SceneVtkItem::OnClickButtonResetCamera() {
     std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* , const vtkUserData& ){
         _sceneData->ZoomToExtent();
+    });
+    QQuickVtkItem::dispatch_async(foo);
+}
+
+void SceneVtkItem::OnClickButtonRuler() {
+    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
+        _sceneData->Execute<RulerOptions::vtkButtonRulerCallback>();
     });
     QQuickVtkItem::dispatch_async(foo);
 }

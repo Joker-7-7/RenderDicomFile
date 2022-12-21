@@ -7,6 +7,7 @@
 
 class SceneVtkItem : public QQuickVtkItem
 {
+public:
 Q_OBJECT
 public:
 
@@ -24,6 +25,10 @@ public:
     /// Open file button click
     /// </summary>
     Q_INVOKABLE void OnClickButtonResetCamera();
+    /// <summary>
+    /// Ruler button click
+    /// </summary>
+    Q_INVOKABLE void OnClickButtonRuler();
 
 signals:
     void showMessageBox();

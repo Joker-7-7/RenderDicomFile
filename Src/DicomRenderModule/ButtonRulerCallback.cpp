@@ -94,6 +94,9 @@ namespace RulerOptions
 	}
 
 	vtkButtonRulerCallback::~vtkButtonRulerCallback() {
-        _distanceWidget->Off();
+        if(_distanceWidget)
+            _distanceWidget->Delete();
+        if(_tempDistanceWidget)
+            _tempDistanceWidget->Delete();
     }
 }

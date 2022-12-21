@@ -76,6 +76,10 @@ Window {
             }
 
             Button {
+                onClicked: { scene.OnClickButtonRuler()}
+                 icon.source: "qrc:/Assets/ruler.png"
+            }
+            Button {
                 text: "Open directory"
                 onClicked: function() {
                     indicator.running = true;

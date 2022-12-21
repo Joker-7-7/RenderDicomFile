@@ -14,20 +14,34 @@
 #include <vtkDICOMDirectory.h>
 #include <vtkDICOMImageReader.h>
 
-SceneVtkData::SceneVtkData() : _backgroundColor{0.3, 0.3, 0.3}, _desiredUpdateRate(30){
+SceneVtkData::SceneVtkData() :
+            _backgroundColor{0.3, 0.3, 0.3}
+            , _desiredUpdateRate(30){
+}
+
+void SceneVtkData::InitSceneVTKData(vtkRenderWindow *renderWindow) {
+
+    _renderWindow = renderWindow;
     SetupRender();
     SetupGPU();
 
     CreateDrill();
     CreateRepresentations();
+    CreateSliders();
     CreateCallbacks();
 }
 
 void SceneVtkData::SetupRender() {
 
-    _renderer->SetBackground(_backgroundColor);
+    vtkNew<vtkInteractorStyleTrackballCamera> style;
+    style->SetDefaultRenderer(_renderer);
 
-    _iren->SetRenderWindow(_renderWindow);
+    _renderWindow->GetInteractor()->SetInteractorStyle(style);
+    _renderWindow->SetSize(_renderWindow->GetScreenSize());
+    _renderWindow->AddRenderer(_renderer);
+    _renderWindow->SetWindowName("MainWindow");
+
+    _renderer->SetBackground(_backgroundColor);
 }
 
 void SceneVtkData::SetupGPU() {
@@ -44,17 +58,16 @@ void SceneVtkData::SetupGPU() {
     _volumeProperty->SetSpecular(0.25);
     _volumeProperty->SetSpecularPower(40);
 
-    int wl = 900;
-    int ww = 300;
-    LayersConfiguration::setColorAndOpacityFunction(_volumeProperty,_slidersValue.Slider_L, _slidersValue.Slider_W);
 
     _volume->SetProperty(_volumeProperty);
 }
 
 void SceneVtkData::AddDataSet(vtkSmartPointer<vtkImageReader2> reader) {
     RemoveDataSet();
+    RemoveCallbacks();
 
     SetupReader(reader);
+    SetupCallbacks();
 
     // Mapper
     vtkNew<vtkGPUVolumeRayCastMapper> mapper;
@@ -78,7 +91,13 @@ void SceneVtkData::RemoveDataSet() {
 }
 
 void SceneVtkData::SetupReader(vtkSmartPointer<vtkImageReader2> reader) {
+    _representation->setReader(reader);
+    // save reader in first buffer
     _reader = reader;
+    // create new reader for second buffer
+    vtkNew<vtkImageReader2> newReaderCopy;
+    newReaderCopy->GetOutput()->DeepCopy(reader->GetOutput());
+    _preReader = newReaderCopy;
 }
 
 bool SceneVtkData::OpenDirectory(QString directory)
@@ -100,7 +119,6 @@ bool SceneVtkData::OpenDirectory(QString directory)
 
     if (directoryReader->GetNumberOfSeries() == 0)
     {
-
         return false;
     }
 
@@ -145,7 +163,7 @@ void SceneVtkData::ZoomToExtent() {
 }
 
 void SceneVtkData::CreateRepresentations() {
-    _representation = std::make_shared<Representation>(_iren, _renderer);
+    _representation = std::make_shared<Representation>(_renderWindow->GetInteractor(), _renderer.Get());
 }
 
 void SceneVtkData::CreateDrill() {
@@ -169,3 +187,18 @@ void SceneVtkData::SetupCallbacks() {
 
     _callbacks->setupCallbacks();
 }
+
+void SceneVtkData::RemoveCallbacks()
+{
+    _representation->_boxWidget->RemoveAllObservers();
+    _sliders->_sliderWidget_L->RemoveAllObservers();
+    _sliders->_sliderWidget_W->RemoveAllObservers();
+    _callbacks->disconnectCallbacks();
+}
+
+void SceneVtkData::CreateSliders() {
+    _sliders = std::make_shared<Sliders>(_renderWindow->GetInteractor(), _volumeProperty);
+    LayersConfiguration::setColorAndOpacityFunction(_volumeProperty, _sliders->_setupWLWWConfig->wl, _sliders->_setupWLWWConfig->ww);
+}
+
+

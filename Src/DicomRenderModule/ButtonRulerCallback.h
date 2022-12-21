@@ -34,9 +34,9 @@ namespace RulerOptions
 	public:
 		vtkButtonRulerCallback();
 
-        vtkSmartPointer<vtkDistanceWidget> _distanceWidget;
+        vtkDistanceWidget* _distanceWidget;
 
-        vtkSmartPointer<vtkDistanceWidget> _tempDistanceWidget;
+        vtkDistanceWidget* _tempDistanceWidget;
 
 		bool _modeOn;
 
