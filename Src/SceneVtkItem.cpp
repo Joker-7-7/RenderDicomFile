@@ -57,3 +57,24 @@ void SceneVtkItem::OnClickButtonBoxRep() {
     });
     QQuickVtkItem::dispatch_async(foo);
 }
+
+void SceneVtkItem::OnClickButtonTeethConfig() {
+    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
+        _sceneData->Execute<LayersConfiguration::vtkTeethConfigCallback>();
+    });
+    QQuickVtkItem::dispatch_async(foo);
+}
+
+void SceneVtkItem::OnClickButtonSolidConfig() {
+    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
+        _sceneData->Execute<LayersConfiguration::vtkSolidConfigCallback>();
+    });
+    QQuickVtkItem::dispatch_async(foo);
+}
+
+void SceneVtkItem::OnClickButtonSkinConfig() {
+std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
+_sceneData->Execute<LayersConfiguration::vtkSkinConfigCallback>();
+    });
+QQuickVtkItem::dispatch_async(foo);
+}

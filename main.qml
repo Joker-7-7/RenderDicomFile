@@ -71,16 +71,6 @@ Window {
         RowLayout {
 
             Button {
-                onClicked: { scene.OnClickButtonRuler()}
-                 icon.source: "qrc:/Assets/ruler.png"
-            }
-
-            Button {
-                onClicked: { scene.OnClickButtonBoxRep()}
-                 icon.source: "qrc:/Assets/cube.png"
-            }
-
-            Button {
                 text: "Open directory"
                 onClicked: function() {
                     indicator.running = true;
@@ -95,6 +85,32 @@ Window {
                     fileDialog.open();
                 }
             }
+
+            Button {
+                onClicked: { scene.OnClickButtonRuler()}
+                 icon.source: "qrc:/Assets/ruler.png"
+            }
+
+            Button {
+                onClicked: { scene.OnClickButtonBoxRep()}
+                 icon.source: "qrc:/Assets/cube.png"
+            }
+
+            Button {
+                onClicked: { scene.OnClickButtonTeethConfig()}
+                 icon.source: "qrc:/Assets/jaw.png"
+            }
+
+            Button {
+                onClicked: { scene.OnClickButtonSolidConfig()}
+                 icon.source: "qrc:/Assets/skull.png"
+            }
+
+            Button {
+                onClicked: { scene.OnClickButtonSkinConfig()}
+                 icon.source: "qrc:/Assets/face.png"
+            }
+
             Button {
                 text: "Zoom camera"
                 onClicked: { scene.OnClickButtonResetCamera()}

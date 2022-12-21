@@ -21,7 +21,7 @@ public:
     /// Open file button click
     /// </summary>
     Q_INVOKABLE void OnClickButtonOpenDirectory(QString directory);
-    /// <summary>
+    /// <summary>`
     /// Open file button click
     /// </summary>
     Q_INVOKABLE void OnClickButtonResetCamera();
@@ -33,6 +33,18 @@ public:
     /// Clipping Box button click
     /// </summary>
     Q_INVOKABLE void OnClickButtonBoxRep();
+        /// <summary>
+    /// Teeth Config button click
+    /// </summary>
+    Q_INVOKABLE void OnClickButtonTeethConfig();
+    /// <summary>
+    /// Solid Config button click
+    /// </summary>
+    Q_INVOKABLE void OnClickButtonSolidConfig();
+    /// <summary>
+    /// Skin Config button click
+    /// </summary>
+    Q_INVOKABLE void OnClickButtonSkinConfig();
 signals:
     void showMessageBox();
 public:
