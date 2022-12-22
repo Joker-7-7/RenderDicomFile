@@ -1,8 +1,8 @@
 #ifndef LSLIDERCALLBACKW_H
 #define LSLIDERCALLBACKW_H
 
-#include "AbstractCallback.h"
-#include "LayersConfiguration.h"
+#include "AbstractCallback.hpp"
+#include "LayersConfiguration.hpp"
 
 #include <vtkSliderRepresentation.h>
 #include <vtkSliderWidget.h>

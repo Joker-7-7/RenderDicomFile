@@ -1,9 +1,9 @@
 #ifndef BUTTONPOLYLINERULERCALLBACK_H
 #define BUTTONPOLYLINERULERCALLBACK_H
 
-#include "AbstractCallback.h"
-#include "PolylineRulerWidget.h"
-#include "KeyPressInteractorStyle.h"
+#include "AbstractCallback.hpp"
+#include "PolylineRulerWidget.hpp"
+#include "KeyPressInteractorStyle.hpp"
 
 /// <summary>
 /// Callback for polyline button

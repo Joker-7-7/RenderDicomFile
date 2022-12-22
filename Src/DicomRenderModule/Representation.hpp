@@ -1,7 +1,7 @@
 #ifndef REPRESENTATION_H
 #define REPRESENTATION_H
 
-#include "KeyPressInteractorStyle.h"
+#include "KeyPressInteractorStyle.hpp"
 
 #include <vtkBoxWidget2.h>
 #include <vtkNew.h>

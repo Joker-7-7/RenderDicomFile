@@ -1,7 +1,7 @@
 #ifndef BUTTONRULERCALLBACK_H
 #define BUTTONRULERCALLBACK_H
 
-#include "AbstractCallback.h"
+#include "AbstractCallback.hpp"
 
 #include <vtkDistanceWidget.h>
 #include <vtkDistanceRepresentation3D.h>

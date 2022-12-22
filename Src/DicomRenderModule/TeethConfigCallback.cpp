@@ -1,4 +1,4 @@
-#include "TeethConfigCallback.h"
+#include "TeethConfigCallback.hpp"
 
 
 namespace LayersConfiguration

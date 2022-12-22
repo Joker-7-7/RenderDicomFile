@@ -1,4 +1,4 @@
-#include "ButtonBoxCallback.h"
+#include "ButtonBoxCallback.hpp"
 
 vtkButtonBoxCallback::vtkButtonBoxCallback()
 {

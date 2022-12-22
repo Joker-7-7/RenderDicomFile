@@ -1,4 +1,4 @@
-#include "Drill.h"
+#include "Drill.hpp"
 
 #include <vtkProperty.h>
 #include <vtkVector.h>

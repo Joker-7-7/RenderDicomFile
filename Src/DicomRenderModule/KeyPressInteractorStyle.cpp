@@ -1,4 +1,4 @@
-#include "KeyPressInteractorStyle.h"
+#include "KeyPressInteractorStyle.hpp"
 
 KeyPressInteractorStyle::KeyPressInteractorStyle()
 {

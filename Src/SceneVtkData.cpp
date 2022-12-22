@@ -1,6 +1,6 @@
-#include "SceneVtkData.h"
+#include "SceneVtkData.hpp"
 
-#include "DicomRenderModule/LayersConfiguration.h"
+#include "DicomRenderModule/LayersConfiguration.hpp"
 
 #include <vtkNew.h>
 #include <vtkProperty.h>

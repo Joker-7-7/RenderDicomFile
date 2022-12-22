@@ -1,7 +1,7 @@
 #ifndef LAYERSCONFIGURATION_H
 #define LAYERSCONFIGURATION_H
 
-#include "AbstractCallback.h"
+#include "AbstractCallback.hpp"
 
 #include <vtkColorTransferFunction.h>
 #include <vtkPiecewiseFunction.h>

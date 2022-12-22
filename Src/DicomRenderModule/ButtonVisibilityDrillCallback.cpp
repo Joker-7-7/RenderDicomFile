@@ -1,4 +1,4 @@
-#include "ButtonVisibilityDrillCallback.h"
+#include "ButtonVisibilityDrillCallback.hpp"
 
 vtkButtonVisibilityDrillCallback::vtkButtonVisibilityDrillCallback()
 {

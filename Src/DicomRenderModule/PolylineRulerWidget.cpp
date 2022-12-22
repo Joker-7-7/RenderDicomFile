@@ -1,4 +1,4 @@
-#include "PolylineRulerWidget.h"
+#include "PolylineRulerWidget.hpp"
 
 #include <vtkCoordinate.h>
 #include <vtkDistanceRepresentation2D.h>

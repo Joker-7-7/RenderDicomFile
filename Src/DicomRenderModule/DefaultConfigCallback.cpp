@@ -1,4 +1,4 @@
-#include "DefaultConfigCallback.h"
+#include "DefaultConfigCallback.hpp"
 
 
 namespace LayersConfiguration

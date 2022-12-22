@@ -1,8 +1,8 @@
-#ifndef SOLIDCONFIGCALLBACK_H
-#define SOLIDCONFIGCALLBACK_H
+#ifndef TEETHCONFIGCALLBACK_H
+#define TEETHCONFIGCALLBACK_H
 
-#include "AbstractCallback.h"
-#include "LayersConfiguration.h"
+#include "AbstractCallback.hpp"
+#include "LayersConfiguration.hpp"
 
 #include <vtkSliderRepresentation.h>
 #include <vtkSliderWidget.h>
@@ -10,12 +10,12 @@
 namespace LayersConfiguration
 {
 	/// <summary>
-	/// Callback to set Solid Config for sliders
+	/// Callback to set Teeth Config for sliders
 	/// </summary>
-	class vtkSolidConfigCallback final : public AbstractCallback
+	class vtkTeethConfigCallback final : public AbstractCallback
 	{
 	public:
-		vtkSolidConfigCallback();
+		vtkTeethConfigCallback();
 
 		vtkVolumeProperty* _volumeProperty;
 
@@ -25,7 +25,7 @@ namespace LayersConfiguration
 
 		setupWLWW* _currentSetup;
 
-		static vtkSolidConfigCallback* New();
+		static vtkTeethConfigCallback* New();
 
 		void Execute(vtkObject* caller_, unsigned long, void*) override;
 	};

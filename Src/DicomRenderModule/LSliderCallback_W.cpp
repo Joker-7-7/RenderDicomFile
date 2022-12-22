@@ -1,4 +1,4 @@
-#include "LSliderCallback_W.h"
+#include "LSliderCallback_W.hpp"
 
 namespace LayersConfiguration
 {

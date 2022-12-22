@@ -1,7 +1,7 @@
 #ifndef BOXCALLBACKS_H
 #define BOXCALLBACKS_H
 
-#include "AbstractCallback.h"
+#include "AbstractCallback.hpp"
 #include <vtkObject.h>
 #include <vtkBoxWidget2.h>
 #include <vtkNew.h>

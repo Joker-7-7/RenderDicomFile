@@ -1,10 +1,10 @@
 #ifndef KEYPRESSINTERACTORSTYLE_H
 #define KEYPRESSINTERACTORSTYLE_H
 
-#include "BoxCallbacks.h"
-#include "PolylineRulerWidget.h"
-#include "Drill.h"
-#include "AbstractCallback.h"
+#include "BoxCallbacks.hpp"
+#include "PolylineRulerWidget.hpp"
+#include "Drill.hpp"
+#include "AbstractCallback.hpp"
 
 #include <vtkInteractorStyleTrackballCamera.h>
 #include <vtkRendererCollection.h>

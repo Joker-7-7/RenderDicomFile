@@ -1,7 +1,7 @@
 #ifndef VOLUMEPARAMETERSCALLBACK_H
 #define VOLUMEPARAMETERSCALLBACK_H
 
-#include "AbstractCallback.h"
+#include "AbstractCallback.hpp"
 
 #include <vtkGPUVolumeRayCastMapper.h>
 #include <vtkVolume.h>

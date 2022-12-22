@@ -1,24 +1,24 @@
 #ifndef CALLBACKS_H
 #define CALLBACKS_H
 
-#include "ButtonReverseDrillCallback.h"
-#include "ButtonPolylineRulerCallback.h"
-#include "TeethConfigCallback.h"
-#include "SkinConfigCallback.h"
-#include "SolidConfigCallback.h"
-#include "DefaultConfigCallback.h"
-#include "LSliderCallback_W.h"
-#include "LSliderCallback_L.h"
-#include "ButtonDrillCallback.h"
-#include "KeyPressInteractorStyle.h"
-#include "ButtonRulerCallback.h"
-#include "BoxCallbacks.h"
-#include "ButtonBoxCallback.h"
-#include "VolumeParametersCallback.h"
-#include "ButtonVisibilityDrillCallback.h"
+#include "ButtonReverseDrillCallback.hpp"
+#include "ButtonPolylineRulerCallback.hpp"
+#include "TeethConfigCallback.hpp"
+#include "SkinConfigCallback.hpp"
+#include "SolidConfigCallback.hpp"
+#include "DefaultConfigCallback.hpp"
+#include "LSliderCallback_W.hpp"
+#include "LSliderCallback_L.hpp"
+#include "ButtonDrillCallback.hpp"
+#include "KeyPressInteractorStyle.hpp"
+#include "ButtonRulerCallback.hpp"
+#include "BoxCallbacks.hpp"
+#include "ButtonBoxCallback.hpp"
+#include "VolumeParametersCallback.hpp"
+#include "ButtonVisibilityDrillCallback.hpp"
 
-#include "Representation.h"
-#include "Sliders.h"
+#include "Representation.hpp"
+#include "Sliders.hpp"
 
 #include <vtkCallbackCommand.h>
 #include <vtkRenderWindowInteractor.h>

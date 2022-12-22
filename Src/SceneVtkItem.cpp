@@ -1,5 +1,5 @@
 
-#include "SceneVtkItem.h"
+#include "SceneVtkItem.hpp"
 
 #include <vtkRenderWindow.h>
 

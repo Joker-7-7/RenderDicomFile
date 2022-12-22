@@ -1,4 +1,4 @@
-#include "SolidConfigCallback.h"
+#include "SolidConfigCallback.hpp"
 
 
 namespace LayersConfiguration

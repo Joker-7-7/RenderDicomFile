@@ -1,8 +1,8 @@
-#ifndef DEFAULTCONFIGCALLBACK_H
-#define DEFAULTCONFIGCALLBACK_H
+#ifndef SOLIDCONFIGCALLBACK_H
+#define SOLIDCONFIGCALLBACK_H
 
-#include "AbstractCallback.h"
-#include "LayersConfiguration.h"
+#include "AbstractCallback.hpp"
+#include "LayersConfiguration.hpp"
 
 #include <vtkSliderRepresentation.h>
 #include <vtkSliderWidget.h>
@@ -10,12 +10,12 @@
 namespace LayersConfiguration
 {
 	/// <summary>
-	/// Callback to set Default Config for sliders
+	/// Callback to set Solid Config for sliders
 	/// </summary>
-	class vtkDefaultConfigCallback final : public AbstractCallback
+	class vtkSolidConfigCallback final : public AbstractCallback
 	{
 	public:
-		vtkDefaultConfigCallback();
+		vtkSolidConfigCallback();
 
 		vtkVolumeProperty* _volumeProperty;
 
@@ -25,7 +25,7 @@ namespace LayersConfiguration
 
 		setupWLWW* _currentSetup;
 
-		static vtkDefaultConfigCallback* New();
+		static vtkSolidConfigCallback* New();
 
 		void Execute(vtkObject* caller_, unsigned long, void*) override;
 	};

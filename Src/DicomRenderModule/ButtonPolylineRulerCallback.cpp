@@ -1,4 +1,4 @@
-#include "ButtonPolylineRulerCallback.h"
+#include "ButtonPolylineRulerCallback.hpp"
 
 #include <vtkRenderWindowInteractor.h>
 

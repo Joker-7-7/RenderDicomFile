@@ -1,4 +1,4 @@
-#include "Sliders.h"
+#include "Sliders.hpp"
 
 
 Sliders::Sliders(vtkRenderWindowInteractor* iren_, vtkVolumeProperty* volumeProperty_)

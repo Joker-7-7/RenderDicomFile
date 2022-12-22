@@ -1,4 +1,4 @@
-#include "VolumeParametersCallback.h"
+#include "VolumeParametersCallback.hpp"
 
 vtkButtonJitteringModeCallback::vtkButtonJitteringModeCallback()
 {

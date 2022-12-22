@@ -1,8 +1,8 @@
 #ifndef BUTTONREVERSEDRILLCALLBACK_H
 #define BUTTONREVERSEDRILLCALLBACK_H
 
-#include "AbstractCallback.h"
-#include "Drill.h"
+#include "AbstractCallback.hpp"
+#include "Drill.hpp"
 
 /// <summary>
 /// Callback for drill mode button

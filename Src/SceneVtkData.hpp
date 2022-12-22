@@ -1,8 +1,8 @@
 #ifndef SCENEVTKDATA_H
 #define SCENEVTKDATA_H
 
-#include "Src/DicomRenderModule/Callbacks.h"
-#include "Src/DicomRenderModule/Representation.h"
+#include "Src/DicomRenderModule/Callbacks.hpp"
+#include "Src/DicomRenderModule/Representation.hpp"
 
 #include <QString.h>
 

@@ -1,7 +1,7 @@
 #ifndef MYVTKITEM_H
 #define MYVTKITEM_H
 
-#include "SceneVtkData.h"
+#include "SceneVtkData.hpp"
 
 #include "QQuickVtkItem.h"
 

@@ -5,7 +5,7 @@
 
 #include <QVTKRenderWindowAdapter.h>
 
-#include "SceneVtkItem.h"
+#include "SceneVtkItem.hpp"
 
 extern "C" {
     _declspec(dllexport) int NvOptimusEnablement = 1;

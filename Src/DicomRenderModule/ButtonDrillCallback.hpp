@@ -1,8 +1,8 @@
 #ifndef BUTTONDRILLCALLBACK_H
 #define BUTTONDRILLCALLBACK_H
 
-#include "AbstractCallback.h"
-#include "Drill.h"
+#include "AbstractCallback.hpp"
+#include "Drill.hpp"
 
 /// <summary>
 /// Callback for drill visibility button

@@ -1,4 +1,4 @@
-#include "SkinConfigCallback.h"
+#include "SkinConfigCallback.hpp"
 
 
 namespace LayersConfiguration

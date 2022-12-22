@@ -1,7 +1,7 @@
 #ifndef BUTTONBOXCALLBACK_H
 #define BUTTONBOXCALLBACK_H
 
-#include "AbstractCallback.h"
+#include "AbstractCallback.hpp"
 
 #include <vtkBoxWidget2.h>
 

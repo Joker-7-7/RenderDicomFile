@@ -1,7 +1,7 @@
 #ifndef SKIDERS_H
 #define SKIDERS_H
 
-#include "LayersConfiguration.h"
+#include "LayersConfiguration.hpp"
 
 #include <vtkSliderWidget.h>
 #include <vtkNew.h>

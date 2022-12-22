@@ -1,4 +1,4 @@
-#include "LayersConfiguration.h"
+#include "LayersConfiguration.hpp"
 
 
 namespace LayersConfiguration
