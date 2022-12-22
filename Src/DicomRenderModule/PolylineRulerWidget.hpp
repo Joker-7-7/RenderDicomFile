@@ -38,8 +38,7 @@ struct vec3
 /// <summary>
 /// Class for polyline widget
 /// </summary>
-class PolylineRulerWidget
-	: public vtkAbstractWidget
+class PolylineRulerWidget : public vtkAbstractWidget
 {
 public:
 	// polyline vertices
@@ -95,7 +94,7 @@ public:
 	/// Get polyline length
 	/// </summary>
 	/// <returns></returns>
-	double GetLength();
+	double GetLength() const noexcept;
 };
 
 #endif

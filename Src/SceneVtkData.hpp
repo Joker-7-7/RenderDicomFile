@@ -67,11 +67,11 @@ public:
     /// <summary>
     /// Setup vtkGPUVolumeRayCastMapper, vtkColorTransferFunction, vtkPiecewiseFunction
     /// </summary>
-    void SetupGPU();
+    void SetupGPU() const noexcept;
     /// <summary>
     /// Remove the data set from the scene
     /// </summary>
-    void RemoveDataSet();
+    void RemoveDataSet() const;
     /// <summary>
     /// Setup readers parameters for m_ptrReader and m_ptrPreReader
     /// </summary>
@@ -80,23 +80,23 @@ public:
     /// <summary>
     /// Create all representations un the app
     /// </summary>
-    void CreateRepresentations();
+    void CreateRepresentations() noexcept;
     /// <summary>
     /// Create twin of the drill
     /// </summary>
-    void CreateDrill();
+    void CreateDrill() noexcept;
     /// <summary>
     /// Remove all callbacks in the app
     /// </summary>
-    void RemoveCallbacks();
+    void RemoveCallbacks() const;
     /// <summary>
     /// Create all sliders in the app
     /// </summary>
-    void CreateSliders();
+    void CreateSliders() noexcept;
     /// <summary>
     /// Create all callbacks in the app
     /// </summary>
-    void CreateCallbacks();
+    void CreateCallbacks() noexcept;
     /// <summary>
     /// Setup all callbacks in the app
     /// </summary>
@@ -104,7 +104,7 @@ public:
     /// <summary>
     /// Zoom to the extent of the data set in the scene
     /// </summary>
-    void ZoomToExtent() const;
+    void ZoomToExtent() const noexcept;
     /// <summary>
     /// Open single DICOM file
     /// </summary>

@@ -2,10 +2,10 @@
 
 
 
-Representation::Representation(vtkRenderWindowInteractor* iren_, vtkRenderer* renderer_)
+Representation::Representation(vtkRenderWindowInteractor* interactor, vtkRenderer* renderer)
 {
     vtkNew<vtkInteractorStyleTrackballCamera> l_trackball;
-    iren_->SetInteractorStyle(l_trackball);
+    interactor->SetInteractorStyle(l_trackball);
 
     vtkNew<vtkBoxRepresentation> l_box_rep;
     l_box_rep->SetInsideOut(true);
@@ -13,11 +13,11 @@ Representation::Representation(vtkRenderWindowInteractor* iren_, vtkRenderer* re
     _boxWidget->RotationEnabledOff();
     _boxWidget->TranslationEnabledOff();
     _boxWidget->SetRepresentation(l_box_rep);
-    _boxWidget->SetInteractor(iren_);
+    _boxWidget->SetInteractor(interactor);
     _boxWidget->GetRepresentation()->SetPlaceFactor(1.);
 
-    _cameraAxisOrientManipulator->SetParentRenderer(renderer_);
-    _cameraAxisOrientManipulator->SetInteractor(iren_);
+    _cameraAxisOrientManipulator->SetParentRenderer(renderer);
+    _cameraAxisOrientManipulator->SetInteractor(interactor);
     _cameraAxisOrientManipulator->On();
 }
 

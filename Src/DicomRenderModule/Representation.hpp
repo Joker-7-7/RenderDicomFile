@@ -29,7 +29,7 @@ public:
 	vtkNew<vtkCameraOrientationWidget> _cameraAxisOrientManipulator;
 
 public:
-	Representation(vtkRenderWindowInteractor* iren_, vtkRenderer* renderer_);
+	Representation(vtkRenderWindowInteractor* interactor, vtkRenderer* renderer);
 	~Representation() = default;
 
 	void SetReader(vtkImageReader2* ptrReader);

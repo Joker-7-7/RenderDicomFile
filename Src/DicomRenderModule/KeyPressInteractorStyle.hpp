@@ -28,13 +28,13 @@ public:
 	void OnMouseMove() override;
 	void OnKeyRelease() override;
 
-	void SetDrill(Drill* drill);
-	void SetImageCurrentData(vtkImageData* imageCurrentData);
-	void SetImagePreData(vtkImageData* imagePreData);
-	void SetVolume(vtkVolume* volume);
-	void SetBoxCallback(vtkBoxCallback* boxCallback);
-	void SetBoxWidget(vtkBoxWidget2* boxWidget);
-	void SetPolyline(PolylineRulerWidget* polylineWidget);
+	void SetDrill(Drill* drill) noexcept;
+	void SetImageCurrentData(vtkImageData* imageCurrentData) noexcept;
+	void SetImagePreData(vtkImageData* imagePreData) noexcept;
+	void SetVolume(vtkVolume* volume) noexcept;
+	void SetBoxCallback(vtkBoxCallback* boxCallback) noexcept;
+	void SetBoxWidget(vtkBoxWidget2* boxWidget) noexcept;
+	void SetPolyline(PolylineRulerWidget* polylineWidget) noexcept;
 
 private:
     Drill* _drill;

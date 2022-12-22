@@ -52,7 +52,7 @@ public:
 	/// <summary>
 	/// Set drill opacity
 	/// </summary>
-	void SetOpacity(double value);
+	void SetOpacity(double value) noexcept;
 
 	/// <summary>
 	/// This method changes the visibility of the drill on each call, in a closed pipeline
@@ -70,7 +70,7 @@ public:
 	/// <summary>
 	/// // Set visibility mode to Transparent
 	/// </summary>
-	void SetTransparentVisibility();
+	void SetTransparentVisibility() noexcept;
 
 	/// <summary>
 	/// // Set visibility mode to Head
@@ -87,22 +87,22 @@ public:
 	/// Set drill world position 
 	/// </summary>
 	/// <param name="newPosition"></param>
-	void SetPosition(double* newPosition_);
+	void SetPosition(double* newPosition_) noexcept;
 
 	/// <summary>
 	/// Get drill visibility
 	/// </summary>
-	bool GetVisibility();
+	bool GetVisibility() const noexcept;
 
 	/// <summary>
 	/// Drill On visibility
 	/// </summary>
-	void VisibilityOn();
+	void VisibilityOn() noexcept;
 
 	/// <summary>
 	/// Drill Off visibility
 	/// </summary>
-	void VisibilityOff();
+	void VisibilityOff() noexcept;
 
 	/// <summary>
 	/// Drilling volume model
@@ -110,7 +110,7 @@ public:
 	/// <param name="volume"></param>
 	/// <param name="imageData"></param>
 	/// <param name="imagePreData"></param>
-	void DrillingVolume(vtkVolume* volume_, vtkImageData* imageCurrentData_, vtkImageData* imagePreData_);
+	void DrillingVolume(vtkImageData* imageCurrentData_, vtkImageData* imagePreData_);
 
 	/// <summary>
 	/// Move click callback function for drill
@@ -125,55 +125,55 @@ public:
 	/// <summary>
 	/// Move drill in X-axis
 	/// </summary>
-	void MoveX(float positionStep_);
+	void MoveX(float positionStep_) noexcept;
 
 	/// <summary>
 	/// Move drill in Y-axis
 	/// </summary>
-	void MoveY(float positionStep_);
+	void MoveY(float positionStep_) noexcept;
 
 	/// <summary>
 	/// move drill Up Z-axis
 	/// </summary>
-	void MoveZ(float positionStep_);
+	void MoveZ(float positionStep_) noexcept;
 
 	/// <summary>
 	/// Rotate drill around Z-axis
 	/// </summary>
-	void RotateZ(float angleStep_);
+	void RotateZ(float angleStep_) noexcept;
 
 	/// <summary>
 	/// Rotate drill around X-axis
 	/// </summary>
-	void RotateX(float angleStep_);
+	void RotateX(float angleStep_) noexcept;
 
 	/// <summary>
 	/// Rotate drill around X-axis
 	/// </summary>
-	void RotateY(float angleStep_);
+	void RotateY(float angleStep_) noexcept;
 
 	/// <summary>
 	/// Reverse drill
 	/// </summary>
-	void ReverseDrill();
+	void ReverseDrill() noexcept;
 	/// <summary>
 	/// Move drill by key
 	/// </summary>
 	/// <param name="key_"></param>
 	/// <param name="angleStep"></param>
 	/// <param name="positionStep"></param>
-	void MoveDrillByKey(const char* key_, const float angleStep, const float positionStep);
+	void MoveDrillByKey(const char* key_, const float angleStep, const float positionStep)  noexcept;
 	/// <summary>
 	///  Set _changePosition
 	/// </summary>
-	void SetChangePositionMode(bool value);
+	void SetChangePositionMode(bool value) noexcept;
 	/// <summary>
 	/// Get _changePosition
 	/// </summary>
-	[[nodiscard]] bool IsChangingPositionMode() const;
+	[[nodiscard]] bool IsChangingPositionMode() const noexcept;
 
 protected:
-    bool CheckPointBoundaries(const GraphicPrimitives::Point3D& ijk, const int* iExtents);
+    bool CheckPointBoundaries(const GraphicPrimitives::Point3D& ijk, const int* iExtents) const noexcept;
 
 private:
     // .stl model drill

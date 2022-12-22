@@ -44,7 +44,7 @@ void SceneVtkData::SetupRender()
     _renderer->SetBackground(_backgroundColor);
 }
 
-void SceneVtkData::SetupGPU()
+void SceneVtkData::SetupGPU() const noexcept
 {
     // Setup Volume property
     vtkNew<vtkColorTransferFunction> m_ptrColorFunction;
@@ -82,7 +82,7 @@ void SceneVtkData::AddDataSet(vtkSmartPointer<vtkImageReader2> reader)
     _renderer->ResetCamera();
 }
 
-void SceneVtkData::RemoveDataSet()
+void SceneVtkData::RemoveDataSet() const
 {
     vtkProp* volume = _renderer->GetVolumes()->GetLastProp();
     if (volume != nullptr) {
@@ -159,27 +159,27 @@ bool SceneVtkData::CheckReader(vtkSmartPointer<vtkDICOMReader> reader, vtkSmartP
     return false;
 }
 
-void SceneVtkData::ZoomToExtent() const
+void SceneVtkData::ZoomToExtent() const noexcept
 {
     _renderer->ResetCamera();
 }
 
-void SceneVtkData::CreateRepresentations()
+void SceneVtkData::CreateRepresentations() noexcept
 {
     _representation = std::make_shared<Representation>(_renderWindow->GetInteractor(), _renderer.Get());
 }
 
-void SceneVtkData::CreateDrill()
+void SceneVtkData::CreateDrill() noexcept
 {
     _drill = std::make_shared<Drill>(_renderer);
 }
 
-void SceneVtkData::CreateCallbacks()
+void SceneVtkData::CreateCallbacks() noexcept
 {
     _callbacks = std::make_shared<Callbacks>();
 }
 
-void SceneVtkData::CreateSliders()
+void SceneVtkData::CreateSliders() noexcept
 {
     _sliders = std::make_shared<Sliders>(_renderWindow->GetInteractor(), _volumeProperty);
     LayersConfiguration::SetColorAndOpacityFunction(_volumeProperty, _slidersValue.Slider_L, _slidersValue.Slider_W);
@@ -201,7 +201,7 @@ void SceneVtkData::SetupCallbacks()
     _callbacks->SetupCallbacks();
 }
 
-void SceneVtkData::RemoveCallbacks()
+void SceneVtkData::RemoveCallbacks() const
 {
     _representation->_boxWidget->RemoveAllObservers();
     _sliders->_sliderWidget_L->RemoveAllObservers();

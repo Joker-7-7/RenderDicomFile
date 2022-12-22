@@ -39,7 +39,7 @@ void PolylineRulerWidget::CreateDefaultRepresentation()
 	}
 }
 
-double PolylineRulerWidget::GetLength()
+double PolylineRulerWidget::GetLength() const noexcept
 {
 	double sum = 0.0;
 
@@ -166,7 +166,7 @@ void PolylineRulerWidget::DeleteLastPoint()
 PolylineRulerWidget::~PolylineRulerWidget()
 {
 	_isWidgetOn = false;
-	for (int i = _sphereActors.size() - 1; i >= 0; --i)
+	for (size_t i = _sphereActors.size() - 1; i >= 0; --i)
 	{
 		Interactor->GetRenderWindow()->GetRenderers()->GetFirstRenderer()->RemoveActor(_sphereActors[i]);
 	}

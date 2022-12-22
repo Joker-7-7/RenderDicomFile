@@ -53,7 +53,7 @@ void KeyPressInteractorStyle::OnKeyDown()
 	if (_drill->IsChangingPositionMode())
 	{
         _drill->MoveDrillByKey(key, angleStep, positionStep);
-        _drill->DrillingVolume(_volume, _imageCurrentData, _imagePreData);
+        _drill->DrillingVolume(_imageCurrentData, _imagePreData);
 		_boxCallback->Execute(_boxWidget, static_cast<long>(vtkBoxCallback::BoxMode::Drilling), nullptr);
 		GetCurrentRenderer()->GetRenderWindow()->Render();
 	}
@@ -90,37 +90,37 @@ void KeyPressInteractorStyle::OnKeyRelease()
 	vtkInteractorStyleTrackballCamera::OnKeyRelease();
 }
 
-void KeyPressInteractorStyle::SetDrill(Drill* drill)
+void KeyPressInteractorStyle::SetDrill(Drill* drill) noexcept
 {
 	_drill = drill;
 }
 
-void KeyPressInteractorStyle::SetImageCurrentData(vtkImageData* imageCurrentData)
+void KeyPressInteractorStyle::SetImageCurrentData(vtkImageData* imageCurrentData) noexcept
 {
 	_imageCurrentData = imageCurrentData;
 }
 
-void KeyPressInteractorStyle::SetImagePreData(vtkImageData* imagePreData)
+void KeyPressInteractorStyle::SetImagePreData(vtkImageData* imagePreData) noexcept
 {
 	_imagePreData = imagePreData;
 }
 
-void KeyPressInteractorStyle::SetVolume(vtkVolume* volume)
+void KeyPressInteractorStyle::SetVolume(vtkVolume* volume) noexcept
 {
 	_volume = volume;
 }
 
-void KeyPressInteractorStyle::SetBoxCallback(vtkBoxCallback* boxCallback)
+void KeyPressInteractorStyle::SetBoxCallback(vtkBoxCallback* boxCallback) noexcept
 {
 	_boxCallback = boxCallback;
 }
 
-void KeyPressInteractorStyle::SetBoxWidget(vtkBoxWidget2* boxWidget)
+void KeyPressInteractorStyle::SetBoxWidget(vtkBoxWidget2* boxWidget) noexcept
 {
 	_boxWidget = boxWidget;
 }
 
-void KeyPressInteractorStyle::SetPolyline(PolylineRulerWidget* polylineWidget)
+void KeyPressInteractorStyle::SetPolyline(PolylineRulerWidget* polylineWidget) noexcept
 {
 	_polylineWidget = polylineWidget;
 }

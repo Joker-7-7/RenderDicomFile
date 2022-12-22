@@ -68,7 +68,7 @@ void Drill::SetWholeVisibility()
     LoadSTLDrillModel();
 }
 
-void Drill::SetTransparentVisibility()
+void Drill::SetTransparentVisibility() noexcept
 {
     SetOpacity(0.1);
 }
@@ -101,7 +101,7 @@ void Drill::ChangeVisibilityMode()
 	}
 }
 
-void Drill::SetOpacity(double value)
+void Drill::SetOpacity(double value) noexcept
 {
 	_drillActor->GetProperty()->SetOpacity(value);
 }
@@ -112,75 +112,75 @@ void Drill::SetRender(vtkRenderer* renderer_) const
 	renderer_->AddActor(_drillActor);
 }
 
-void Drill::SetPosition(double* newPosition_)
+void Drill::SetPosition(double* newPosition_) noexcept
 {
 	_drillActor->SetPosition(newPosition_);
 	_tipActor->SetPosition(newPosition_);
 }
 
-bool Drill::GetVisibility()
+bool Drill::GetVisibility() const noexcept
 {
 	return _drillActor->GetVisibility();
 }
 
-void Drill::VisibilityOn()
+void Drill::VisibilityOn() noexcept
 {
 	_drillActor->VisibilityOn();
 	_tipActor->VisibilityOn();
 }
 
-void Drill::VisibilityOff()
+void Drill::VisibilityOff() noexcept
 {
 	_drillActor->VisibilityOff();
 	_tipActor->VisibilityOff();
 }
 
-void Drill::MoveX(float positionStep_)
+void Drill::MoveX(float positionStep_) noexcept
 {
 	double newPosition[3] = { positionStep_, 0.0, 0.0};
 	_drillActor->AddPosition(newPosition);
 	_tipActor->AddPosition(newPosition);
 }
 
-void Drill::MoveY(float positionStep_)
+void Drill::MoveY(float positionStep_) noexcept
 {
 	double newPosition[3] = {0.0, positionStep_, 0.0};
 	_drillActor->AddPosition(newPosition);
 	_tipActor->AddPosition(newPosition);
 }
 
-void Drill::MoveZ(float positionStep_)
+void Drill::MoveZ(float positionStep_) noexcept
 {
 	double newPosition[3] = {0.0, 0.0, positionStep_ };
 	_drillActor->AddPosition(newPosition);
 	_tipActor->AddPosition(newPosition);
 }
 
-void Drill::RotateX(float angleStep_)
+void Drill::RotateX(float angleStep_) noexcept
 {
 	_drillActor->RotateX(angleStep_);
 	_tipActor->RotateX(angleStep_);
 }
 
-void Drill::RotateY(float angleStep_)
+void Drill::RotateY(float angleStep_) noexcept
 {
 	_drillActor->RotateY(angleStep_);
 	_tipActor->RotateY(angleStep_);
 }
 
-void Drill::RotateZ(float angleStep_)
+void Drill::RotateZ(float angleStep_) noexcept
 {
 	_drillActor->RotateZ(angleStep_);
 	_tipActor->RotateZ(angleStep_);
 }
 
-void Drill::ReverseDrill()
+void Drill::ReverseDrill() noexcept
 {
 	_reverse *= -1;
     RotateY(180);
 }
 
-void Drill::MoveDrillByKey(const char* key_, const float angleStep, const float positionStep)
+void Drill::MoveDrillByKey(const char* key_, const float angleStep, const float positionStep)  noexcept
 {
 	if (!std::strcmp(key_, "Right"))
 	{
@@ -232,17 +232,17 @@ void Drill::MoveDrillByKey(const char* key_, const float angleStep, const float 
 	}
 }
 
-bool Drill::IsChangingPositionMode() const
+bool Drill::IsChangingPositionMode() const noexcept
 {
 	return _changePosition;
 }
 
-void Drill::SetChangePositionMode(bool value)
+void Drill::SetChangePositionMode(bool value) noexcept
 {
 	_changePosition = value;
 }
 
-bool Drill::CheckPointBoundaries(const GraphicPrimitives::Point3D& ijk, const int* iExtents)
+bool Drill::CheckPointBoundaries(const GraphicPrimitives::Point3D& ijk, const int* iExtents) const noexcept
 {
 	bool isValidXposDownBound = ijk.x > 7;
 	bool isValidYposDownBound = ijk.y > 7;
@@ -254,7 +254,7 @@ bool Drill::CheckPointBoundaries(const GraphicPrimitives::Point3D& ijk, const in
 	return isValidXposDownBound && isValidYposDownBound && isValidZposDownBound && isValidXposUpperBound && isValidYposUpperBound && isValidZposUpperBound;
 }
 
-void Drill::DrillingVolume(vtkVolume* volume_, vtkImageData* imageCurrentData_, vtkImageData* imagePreData_)
+void Drill::DrillingVolume(vtkImageData* imageCurrentData_, vtkImageData* imagePreData_)
 {
 	double* dSpacing = imageCurrentData_->GetSpacing();
 	GraphicPrimitives::Point3D dTipPosition (_tipActor->GetPosition());
@@ -300,8 +300,8 @@ void Drill::DrillingVolume(vtkVolume* volume_, vtkImageData* imageCurrentData_, 
 	}
 }
 
-void Drill::DrillMovedClickCallbackFunction(vtkObject* caller_, long unsigned int eventId_, void* clientData_,
-                                            void* callData_)
+void Drill::DrillMovedClickCallbackFunction(vtkObject* caller_, long unsigned int , void* clientData_,
+                                            void* )
 {
 	vtkRenderWindowInteractor* inter = vtkRenderWindowInteractor::SafeDownCast(caller_);
 	auto ptrDrill = static_cast<Drill*>(clientData_);
