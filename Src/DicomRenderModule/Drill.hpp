@@ -42,17 +42,17 @@ public:
 	/// <summary>
 	/// Read .stl drill model and create _drillActor
 	/// </summary>
-	void loadSTLDrillModel();
+	void LoadSTLDrillModel();
 
 	/// <summary>
 	/// Read .stl drill head model and create _drillActor
 	/// </summary>
-	void loadSTLDrillHeadModel();
+	void LoadSTLDrillHeadModel();
 
 	/// <summary>
 	/// Set drill opacity
 	/// </summary>
-	void setOpacity(double value);
+	void SetOpacity(double value);
 
 	/// <summary>
 	/// This method changes the visibility of the drill on each call, in a closed pipeline
@@ -60,49 +60,49 @@ public:
 	/// if current mode TransparentDrillBody then change to a OnlyHeadVisibly mode
 	/// if current mode OnlyHeadVisibly then change to a WholeDrillVisible mode
 	/// </summary>
-	void changeVisibilityMode();
+	void ChangeVisibilityMode();
 
 	/// <summary>
 	/// // Set visibility mode to whole
 	/// </summary>
-	void setWholeVisibility();
+	void SetWholeVisibility();
 
 	/// <summary>
 	/// // Set visibility mode to Transparent
 	/// </summary>
-	void setTransparentVisibility();
+	void SetTransparentVisibility();
 
 	/// <summary>
 	/// // Set visibility mode to Head
 	/// </summary>
-	void setHeadVisibility();
+	void SetHeadVisibility();
 
 	/// <summary>
 	/// Set drill render
 	/// </summary>
 	/// <param name="l_renderer"></param>
-	void setRender(vtkRenderer* renderer_) const;
+	void SetRender(vtkRenderer* renderer_) const;
 
 	/// <summary>
 	/// Set drill world position 
 	/// </summary>
 	/// <param name="newPosition"></param>
-	void setPosition(double* newPosition_);
+	void SetPosition(double* newPosition_);
 
 	/// <summary>
 	/// Get drill visibility
 	/// </summary>
-	bool getVisibility();
+	bool GetVisibility();
 
 	/// <summary>
 	/// Drill On visibility
 	/// </summary>
-	void visibilityOn();
+	void VisibilityOn();
 
 	/// <summary>
 	/// Drill Off visibility
 	/// </summary>
-	void visibilityOff();
+	void VisibilityOff();
 
 	/// <summary>
 	/// Drilling volume model
@@ -110,7 +110,7 @@ public:
 	/// <param name="volume"></param>
 	/// <param name="imageData"></param>
 	/// <param name="imagePreData"></param>
-	void drillingVolume(vtkVolume* volume_, vtkImageData* imageCurrentData_, vtkImageData* imagePreData_);
+	void DrillingVolume(vtkVolume* volume_, vtkImageData* imageCurrentData_, vtkImageData* imagePreData_);
 
 	/// <summary>
 	/// Move click callback function for drill
@@ -119,61 +119,61 @@ public:
 	/// <param name="eventId"></param>
 	/// <param name="clientData"></param>
 	/// <param name="callData"></param>
-	static void drillMovedClickCallbackFunction(vtkObject* caller_, long unsigned int eventId_, void* clientData_,
-	                                            void* callData_);
+	static void DrillMovedClickCallbackFunction(vtkObject* caller_, long unsigned int eventId_, void* clientData_,
+                                                void* callData_);
 
 	/// <summary>
 	/// Move drill in X-axis
 	/// </summary>
-	void moveX(float positionStep_);
+	void MoveX(float positionStep_);
 
 	/// <summary>
 	/// Move drill in Y-axis
 	/// </summary>
-	void moveY(float positionStep_);
+	void MoveY(float positionStep_);
 
 	/// <summary>
 	/// move drill Up Z-axis
 	/// </summary>
-	void moveZ(float positionStep_);
+	void MoveZ(float positionStep_);
 
 	/// <summary>
 	/// Rotate drill around Z-axis
 	/// </summary>
-	void rotateZ(float angleStep_);
+	void RotateZ(float angleStep_);
 
 	/// <summary>
 	/// Rotate drill around X-axis
 	/// </summary>
-	void rotateX(float angleStep_);
+	void RotateX(float angleStep_);
 
 	/// <summary>
 	/// Rotate drill around X-axis
 	/// </summary>
-	void rotateY(float angleStep_);
+	void RotateY(float angleStep_);
 
 	/// <summary>
 	/// Reverse drill
 	/// </summary>
-	void reverseDrill();
+	void ReverseDrill();
 	/// <summary>
 	/// Mov� drill by key
 	/// </summary>
 	/// <param name="key_"></param>
 	/// <param name="angleStep"></param>
 	/// <param name="positionStep"></param>
-	void moveDrillByKey(const char* key_, const float angleStep, const float positionStep);
+	void MoveDrillByKey(const char* key_, const float angleStep, const float positionStep);
 	/// <summary>
 	///  Set _changePosition
 	/// </summary>
-	void setChangePositionMode(bool value);
+	void SetChangePositionMode(bool value);
 	/// <summary>
 	/// Get _changePosition
 	/// </summary>
 	[[nodiscard]] bool IsChangingPositionMode() const;
 
 protected:
-    bool checkPointBoundaries(const GraphicPrimitives::Point3D& ijk, const int* iExtents);
+    bool CheckPointBoundaries(const GraphicPrimitives::Point3D& ijk, const int* iExtents);
 
 private:
     // .stl model drill

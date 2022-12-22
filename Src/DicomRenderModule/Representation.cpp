@@ -21,7 +21,7 @@ Representation::Representation(vtkRenderWindowInteractor* iren_, vtkRenderer* re
     //_cameraAxisOrientManipulator->On();
 }
 
-void Representation::setReader(vtkImageReader2* ptrReader)
+void Representation::SetReader(vtkImageReader2* ptrReader)
 {
     _boxWidget->GetRepresentation()->PlaceWidget(ptrReader->GetOutput()->GetBounds());
 }

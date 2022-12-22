@@ -1,7 +1,7 @@
 #include "Callbacks.hpp"
 
 
-void Callbacks::setupCallbacks()
+void Callbacks::SetupCallbacks()
 {
 #pragma region create box rep callback
 	vtkSmartPointer<vtkBoxCallback>_boxCallback = vtkBoxCallback::New();
@@ -109,26 +109,26 @@ void Callbacks::setupCallbacks()
 
 #pragma region create Drill move callback
 	_drillMovedClickCallback = vtkCallbackCommand::New();
-	_drillMovedClickCallback->SetCallback(Drill::drillMovedClickCallbackFunction);
+    _drillMovedClickCallback->SetCallback(Drill::DrillMovedClickCallbackFunction);
 	_drillMovedClickCallback->SetClientData(_callbacksData._drill);
 	_callbacksData._interactor->AddObserver(vtkCommand::LeftButtonPressEvent, _drillMovedClickCallback);
 #pragma endregion
 
 #pragma region create interactor style
 	_interactorStyleCallback = KeyPressInteractorStyle::New();
-	_interactorStyleCallback->setImageCurrentData(_callbacksData._reader->GetOutput());
-	_interactorStyleCallback->setImagePreData(_callbacksData._preReader->GetOutput());
-	_interactorStyleCallback->setVolume(_callbacksData._volume);
-	_interactorStyleCallback->setDrill(_callbacksData._drill);
-	_interactorStyleCallback->setBoxCallback(_boxCallback);
-	_interactorStyleCallback->setBoxWidget(_callbacksData._representation->_boxWidget);
+    _interactorStyleCallback->SetImageCurrentData(_callbacksData._reader->GetOutput());
+    _interactorStyleCallback->SetImagePreData(_callbacksData._preReader->GetOutput());
+    _interactorStyleCallback->SetVolume(_callbacksData._volume);
+    _interactorStyleCallback->SetDrill(_callbacksData._drill);
+    _interactorStyleCallback->SetBoxCallback(_boxCallback);
+    _interactorStyleCallback->SetBoxWidget(_callbacksData._representation->_boxWidget);
 	_interactorStyleCallback->SetCurrentRenderer(_callbacksData._renderer);
 	_callbacksData._interactor->SetInteractorStyle(_interactorStyleCallback);
 #pragma endregion
 
 }
 
-void Callbacks::disconnectCallbacks()
+void Callbacks::DisconnectCallbacks()
 {
 	for(int i = (int)_vectorCallbacks.size() - 1; i >= 0; --i)
 	{

@@ -28,7 +28,7 @@ void vtkButtonPolylineRulerCallback::Execute(vtkObject* caller_, unsigned long, 
 		_widget = nullptr;
 	}
 	_modeOn = !_modeOn;
-	dynamic_cast<KeyPressInteractorStyle*>(_lIren->GetInteractorStyle())->setPolyline(_widget);
+    dynamic_cast<KeyPressInteractorStyle *>(_lIren->GetInteractorStyle())->SetPolyline(_widget);
 }
 
 vtkButtonPolylineRulerCallback::~vtkButtonPolylineRulerCallback()

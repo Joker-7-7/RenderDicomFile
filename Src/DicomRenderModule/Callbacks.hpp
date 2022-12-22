@@ -49,11 +49,11 @@ public:
 public:
 	Callbacks() = default;
 
-	void setupCallbacks();
-	void disconnectCallbacks();
+	void SetupCallbacks();
+	void DisconnectCallbacks();
 
 	template<typename T>
-	AbstractCallback* getCallback()
+	AbstractCallback* GetCallback()
 	{
 		AbstractCallback* res = nullptr;
 		for (auto callback : _vectorCallbacks)

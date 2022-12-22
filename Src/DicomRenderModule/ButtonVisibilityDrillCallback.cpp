@@ -12,5 +12,5 @@ vtkButtonVisibilityDrillCallback* vtkButtonVisibilityDrillCallback::New()
 
 void vtkButtonVisibilityDrillCallback::Execute(vtkObject* caller_, unsigned long, void*)
 {
-	_drill->changeVisibilityMode();
+    _drill->ChangeVisibilityMode();
 }

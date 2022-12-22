@@ -32,7 +32,7 @@ public:
 	Representation(vtkRenderWindowInteractor* iren_, vtkRenderer* renderer_);
 	~Representation() = default;
 
-	void setReader(vtkImageReader2* ptrReader);
+	void SetReader(vtkImageReader2* ptrReader);
 };
 
 #endif

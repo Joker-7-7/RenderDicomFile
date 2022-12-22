@@ -18,6 +18,6 @@ namespace LayersConfiguration
 		vtkSliderWidget* sliderWidget = vtkSliderWidget::SafeDownCast(caller_);
 		const double newWW = dynamic_cast<vtkSliderRepresentation*>(sliderWidget->GetRepresentation())->GetValue();
 		_currentSetup->ww = newWW;
-		setColorAndOpacityFunction(this->_volumeProperty, _currentSetup->wl, _currentSetup->ww);
+        SetColorAndOpacityFunction(this->_volumeProperty, _currentSetup->wl, _currentSetup->ww);
 	}
 }

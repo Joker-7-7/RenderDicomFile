@@ -131,7 +131,7 @@ public:
     void Execute()
     {
         if(_callbacks) {
-            AbstractCallback* callback_ = _callbacks->getCallback<T>();
+            AbstractCallback* callback_ = _callbacks->GetCallback<T>();
             if (callback_) {
                 callback_->Execute(nullptr, NULL, nullptr);
             }

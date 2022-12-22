@@ -39,7 +39,7 @@ void PolylineRulerWidget::CreateDefaultRepresentation()
 	}
 }
 
-double PolylineRulerWidget::getLenght()
+double PolylineRulerWidget::GetLenght()
 {
 	double sum = 0.0;
 
@@ -64,7 +64,7 @@ double PolylineRulerWidget::getLenght()
 	return sum;
 }
 
-void PolylineRulerWidget::insertNewPoint(double vs_[3])
+void PolylineRulerWidget::InsertNewPoint(double vs_[3])
 {
 	if (_state == State::End)
 	{
@@ -102,14 +102,14 @@ void PolylineRulerWidget::insertNewPoint(double vs_[3])
 
 	_sphereActors.push_back(sphereActor);
 
-	const double dPolylineLen = getLenght();
+	const double dPolylineLen = GetLenght();
 	const auto output = std::to_string(dPolylineLen);
 	_text->SetInput(output.c_str());
 
-	updateText();
+    UpdateText();
 }
 
-void PolylineRulerWidget::updateText()
+void PolylineRulerWidget::UpdateText()
 {
 	vtkNew<vtkCoordinate> cord;
 	vec3 pt = !_vectorPoints.empty() ? _vectorPoints.back() : pt = {0.0, 0.0, 0.0};
@@ -121,7 +121,7 @@ void PolylineRulerWidget::updateText()
 	_text->SetDisplayPosition(pos[0], pos[1]);
 }
 
-void PolylineRulerWidget::deleteLastPoint()
+void PolylineRulerWidget::DeleteLastPoint()
 {
 	if (_vectorPoints.empty())
 	{
@@ -156,11 +156,11 @@ void PolylineRulerWidget::deleteLastPoint()
 	_mapper->Update();
 	_actor->SetMapper(_mapper);
 
-	const double dPolylineLen = getLenght();
+	const double dPolylineLen = GetLenght();
 	const auto output = std::to_string(dPolylineLen);
 	_text->SetInput(output.c_str());
 
-	updateText();
+    UpdateText();
 }
 
 PolylineRulerWidget::~PolylineRulerWidget()

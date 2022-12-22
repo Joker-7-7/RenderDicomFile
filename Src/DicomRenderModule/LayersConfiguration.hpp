@@ -24,7 +24,7 @@ namespace LayersConfiguration
 	/// <param name="volume_property"></param>
 	/// <param name="wl"></param>
 	/// <param name="ww"></param>
-	void setColorAndOpacityFunction(vtkVolumeProperty* volumeProperty_, double wl_, double ww_);
+	void SetColorAndOpacityFunction(vtkVolumeProperty* volumeProperty_, double wl_, double ww_);
 }
 
 #endif

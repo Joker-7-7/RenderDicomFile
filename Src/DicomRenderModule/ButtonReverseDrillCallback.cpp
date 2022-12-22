@@ -12,5 +12,5 @@ vtkButtonReverseDrillCallback* vtkButtonReverseDrillCallback::New()
 
 void vtkButtonReverseDrillCallback::Execute(vtkObject* caller_, unsigned long, void*)
 {
-	_drill->reverseDrill();
+    _drill->ReverseDrill();
 }

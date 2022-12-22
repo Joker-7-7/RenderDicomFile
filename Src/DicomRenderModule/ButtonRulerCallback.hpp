@@ -24,7 +24,7 @@ namespace RulerOptions
 	/// <param name="eventId"></param>
 	/// <param name="clientData"></param>
 	/// <param name="vtkNotUsed"></param>
-	void clickCallbackFunction(vtkObject* caller_, long unsigned int eventId_, void* clientData_, void* vtkNotUsed(callData));
+	void ClickCallbackFunction(vtkObject* caller_, long unsigned int eventId_, void* clientData_, void* vtkNotUsed(callData));
 
 	/// <summary>
 	/// Callback for ruler button

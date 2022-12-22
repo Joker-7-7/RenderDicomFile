@@ -67,7 +67,7 @@ public:
 
 	PolylineRulerWidget(const PolylineRulerWidget&) = delete;
 	void operator=(const PolylineRulerWidget&) = delete;
-    
+
 	void CreateDefaultRepresentation() override;
 
 	/// <summary>
@@ -79,23 +79,23 @@ public:
 	/// Insert new vertex in polyline
 	/// </summary>
 	/// <param name="vs"></param>
-	void insertNewPoint(double vs_[3]);
+	void InsertNewPoint(double vs_[3]);
 
 	/// <summary>
 	/// Delete the last vertex in polyline
 	/// </summary>
-	void deleteLastPoint();
+	void DeleteLastPoint();
 
 	/// <summary>
 	/// Update polyline text
 	/// </summary>
-	void updateText();
+	void UpdateText();
 
 	/// <summary>
 	/// Get polyline lenght
 	/// </summary>
 	/// <returns></returns>
-	double getLenght();
+	double GetLenght();
 };
 
 #endif

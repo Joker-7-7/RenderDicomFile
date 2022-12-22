@@ -27,16 +27,16 @@ Drill::Drill()
 	_tipActor->SetMapper(_tipMapper);
 	_tipActor->VisibilityOff();
 
-	loadSTLDrillModel();
+    LoadSTLDrillModel();
     _drillActor->VisibilityOff();
 }
 
 Drill::Drill(vtkRenderer* renderer_) : Drill()
 {
-	setRender(renderer_);
+    SetRender(renderer_);
 }
 
-void Drill::loadSTLDrillModel()
+void Drill::LoadSTLDrillModel()
 {
     QString path = QDir::currentPath() + "/STLModelResources/Drill.stl";
 
@@ -49,7 +49,7 @@ void Drill::loadSTLDrillModel()
 	_drillActor->SetMapper(stlDrillMapper);
 }
 
-void Drill::loadSTLDrillHeadModel()
+void Drill::LoadSTLDrillHeadModel()
 {
     QString path = QDir::currentPath() + "/STLModelResources/drillHead.stl";
 
@@ -62,173 +62,173 @@ void Drill::loadSTLDrillHeadModel()
 	_drillActor->SetMapper(stlDrillMapper);
 }
 
-void Drill::setWholeVisibility()
+void Drill::SetWholeVisibility()
 {
-	setOpacity(1.0);
-	loadSTLDrillModel();
+    SetOpacity(1.0);
+    LoadSTLDrillModel();
 }
 
-void Drill::setTransparentVisibility()
+void Drill::SetTransparentVisibility()
 {
-	setOpacity(0.1);
+    SetOpacity(0.1);
 }
 
-void Drill::setHeadVisibility()
+void Drill::SetHeadVisibility()
 {
-	setOpacity(1.0);
-	loadSTLDrillHeadModel();
+    SetOpacity(1.0);
+    LoadSTLDrillHeadModel();
 }
 
-void Drill::changeVisibilityMode()
+void Drill::ChangeVisibilityMode()
 {
-	if (getVisibility())
+	if (GetVisibility())
 	{
 		switch (_mode)
 		{
 		case DrillVisibilityMode::WholeDrillVisible:
-			setTransparentVisibility();
+            SetTransparentVisibility();
 			_mode = DrillVisibilityMode::TransparentDrillBody;
 			break;
 		case DrillVisibilityMode::TransparentDrillBody:
-			setHeadVisibility();
+            SetHeadVisibility();
 			_mode = DrillVisibilityMode::OnlyHeadVisibly;
 			break;
 		case DrillVisibilityMode::OnlyHeadVisibly:
-			setWholeVisibility();
+            SetWholeVisibility();
 			_mode = DrillVisibilityMode::WholeDrillVisible;
 			break;
 		}
 	}
 }
 
-void Drill::setOpacity(double value)
+void Drill::SetOpacity(double value)
 {
 	_drillActor->GetProperty()->SetOpacity(value);
 }
 
-void Drill::setRender(vtkRenderer* renderer_) const
+void Drill::SetRender(vtkRenderer* renderer_) const
 {
 	renderer_->AddActor(_tipActor);
 	renderer_->AddActor(_drillActor);
 }
 
-void Drill::setPosition(double* newPosition_)
+void Drill::SetPosition(double* newPosition_)
 {
 	_drillActor->SetPosition(newPosition_);
 	_tipActor->SetPosition(newPosition_);
 }
 
-bool Drill::getVisibility()
+bool Drill::GetVisibility()
 {
 	return _drillActor->GetVisibility();
 }
 
-void Drill::visibilityOn()
+void Drill::VisibilityOn()
 {
 	_drillActor->VisibilityOn();
 	_tipActor->VisibilityOn();
 }
 
-void Drill::visibilityOff()
+void Drill::VisibilityOff()
 {
 	_drillActor->VisibilityOff();
 	_tipActor->VisibilityOff();
 }
 
-void Drill::moveX(float positionStep_)
+void Drill::MoveX(float positionStep_)
 {
 	double newPosition[3] = { positionStep_, 0.0, 0.0};
 	_drillActor->AddPosition(newPosition);
 	_tipActor->AddPosition(newPosition);
 }
 
-void Drill::moveY(float positionStep_)
+void Drill::MoveY(float positionStep_)
 {
 	double newPosition[3] = {0.0, positionStep_, 0.0};
 	_drillActor->AddPosition(newPosition);
 	_tipActor->AddPosition(newPosition);
 }
 
-void Drill::moveZ(float positionStep_)
+void Drill::MoveZ(float positionStep_)
 {
 	double newPosition[3] = {0.0, 0.0, positionStep_ };
 	_drillActor->AddPosition(newPosition);
 	_tipActor->AddPosition(newPosition);
 }
 
-void Drill::rotateX(float angleStep_)
+void Drill::RotateX(float angleStep_)
 {
 	_drillActor->RotateX(angleStep_);
 	_tipActor->RotateX(angleStep_);
 }
 
-void Drill::rotateY(float angleStep_)
+void Drill::RotateY(float angleStep_)
 {
 	_drillActor->RotateY(angleStep_);
 	_tipActor->RotateY(angleStep_);
 }
 
-void Drill::rotateZ(float angleStep_)
+void Drill::RotateZ(float angleStep_)
 {
 	_drillActor->RotateZ(angleStep_);
 	_tipActor->RotateZ(angleStep_);
 }
 
-void Drill::reverseDrill()
+void Drill::ReverseDrill()
 {
 	_reverse *= -1;
-	rotateY(180);
+    RotateY(180);
 }
 
-void Drill::moveDrillByKey(const char* key_, const float angleStep, const float positionStep)
+void Drill::MoveDrillByKey(const char* key_, const float angleStep, const float positionStep)
 {
 	if (!std::strcmp(key_, "Right"))
 	{
-		moveX(positionStep);
+        MoveX(positionStep);
 	}
 	else if (!std::strcmp(key_, "Left"))
 	{
-		moveX(-positionStep);
+        MoveX(-positionStep);
 	}
 	else if (!std::strcmp(key_, "Down"))
 	{
-		moveY(positionStep);
+        MoveY(positionStep);
 	}
 	else if (!std::strcmp(key_, "Up"))
 	{
-		moveY(-positionStep);
+        MoveY(-positionStep);
 	}
 	else if (!std::strcmp(key_, "z"))
 	{
-		moveZ(positionStep);
+        MoveZ(positionStep);
 	}
 	else if (!std::strcmp(key_, "x"))
 	{
-		moveZ(-positionStep);
+        MoveZ(-positionStep);
 	}
 	else if (!std::strcmp(key_, "c"))
 	{
-		rotateZ(angleStep);
+        RotateZ(angleStep);
 	}
 	else if (!std::strcmp(key_, "v"))
 	{
-		rotateZ(-angleStep);
+        RotateZ(-angleStep);
 	}
 	else if (!std::strcmp(key_, "b"))
 	{
-		rotateY(angleStep);
+        RotateY(angleStep);
 	}
 	else if (!std::strcmp(key_, "n"))
 	{
-		rotateY(-angleStep);
+        RotateY(-angleStep);
 	}
 	else if (!std::strcmp(key_, "g"))
 	{
-		rotateX(angleStep);
+        RotateX(angleStep);
 	}
 	else if (!std::strcmp(key_, "h"))
 	{
-		rotateX(-angleStep);
+        RotateX(-angleStep);
 	}
 }
 
@@ -237,12 +237,12 @@ bool Drill::IsChangingPositionMode() const
 	return _changePosition;
 }
 
-void Drill::setChangePositionMode(bool value)
+void Drill::SetChangePositionMode(bool value)
 {
 	_changePosition = value;
 }
 
-bool Drill::checkPointBoundaries(const GraphicPrimitives::Point3D& ijk, const int* iExtents)
+bool Drill::CheckPointBoundaries(const GraphicPrimitives::Point3D& ijk, const int* iExtents)
 {
 	bool isValidXposDownBound = ijk.x > 7;
 	bool isValidYposDownBound = ijk.y > 7;
@@ -254,7 +254,7 @@ bool Drill::checkPointBoundaries(const GraphicPrimitives::Point3D& ijk, const in
 	return isValidXposDownBound && isValidYposDownBound && isValidZposDownBound && isValidXposUpperBound && isValidYposUpperBound && isValidZposUpperBound;
 }
 
-void Drill::drillingVolume(vtkVolume* volume_, vtkImageData* imageCurrentData_, vtkImageData* imagePreData_)
+void Drill::DrillingVolume(vtkVolume* volume_, vtkImageData* imageCurrentData_, vtkImageData* imagePreData_)
 {
 	double* dSpacing = imageCurrentData_->GetSpacing();
 	GraphicPrimitives::Point3D dTipPosition (_tipActor->GetPosition());
@@ -271,7 +271,7 @@ void Drill::drillingVolume(vtkVolume* volume_, vtkImageData* imageCurrentData_, 
 	ijkPoint.round();
 
 	int* iExtents =  imageCurrentData_->GetExtent();
-	bool isInBound = checkPointBoundaries(ijkPoint, iExtents);
+	bool isInBound = CheckPointBoundaries(ijkPoint, iExtents);
 
 	if (isInBound)
 	{
@@ -300,7 +300,7 @@ void Drill::drillingVolume(vtkVolume* volume_, vtkImageData* imageCurrentData_, 
 	}
 }
 
-void Drill::drillMovedClickCallbackFunction(vtkObject* caller_, long unsigned int eventId_, void* clientData_,
+void Drill::DrillMovedClickCallbackFunction(vtkObject* caller_, long unsigned int eventId_, void* clientData_,
                                             void* callData_)
 {
 	vtkRenderWindowInteractor* inter = vtkRenderWindowInteractor::SafeDownCast(caller_);
@@ -317,6 +317,6 @@ void Drill::drillMovedClickCallbackFunction(vtkObject* caller_, long unsigned in
 	double* worldPosition = picker->GetPickPosition();
 	if (picker->GetCellId() != -1 && ptrDrill->_changePosition)
 	{
-		ptrDrill->setPosition(worldPosition);
+        ptrDrill->SetPosition(worldPosition);
 	}
 }

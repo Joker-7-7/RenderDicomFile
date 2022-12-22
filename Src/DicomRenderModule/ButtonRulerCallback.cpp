@@ -3,8 +3,8 @@
 
 namespace RulerOptions
 {
-	void clickCallbackFunction(vtkObject* caller_, long unsigned int eventId_, void* clientData_,
-	                           void* vtkNotUsed(callData))
+	void ClickCallbackFunction(vtkObject* caller_, long unsigned int eventId_, void* clientData_,
+                               void* vtkNotUsed(callData))
 	{
 		vtkRenderWindowInteractor* inter = vtkRenderWindowInteractor::SafeDownCast(
 			dynamic_cast<vtkDistanceWidget*>(caller_)->GetInteractor());
@@ -77,7 +77,7 @@ namespace RulerOptions
 			_tempDistanceWidget->SetRepresentation(repres);
 
 			vtkNew<vtkCallbackCommand> clickCallback;
-			clickCallback->SetCallback(clickCallbackFunction);
+            clickCallback->SetCallback(ClickCallbackFunction);
 			clickCallback->SetClientData(_distanceWidget);
 
 			_tempDistanceWidget->AddObserver(vtkCommand::PlacePointEvent, clickCallback);

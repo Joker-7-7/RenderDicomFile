@@ -14,6 +14,6 @@ vtkButtonDrillCallback* vtkButtonDrillCallback::New()
 void vtkButtonDrillCallback::Execute(vtkObject* caller_, unsigned long, void*)
 {
 	_modeOn = !_modeOn;
-	_modeOn ? _drill->visibilityOn() : _drill->visibilityOff();
-	_drill->setChangePositionMode(_modeOn);
+    _modeOn ? _drill->VisibilityOn() : _drill->VisibilityOff();
+    _drill->SetChangePositionMode(_modeOn);
 }

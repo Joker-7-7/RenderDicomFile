@@ -92,7 +92,7 @@ void SceneVtkData::RemoveDataSet()
 
 void SceneVtkData::SetupReader(vtkSmartPointer<vtkImageReader2> reader)
 {
-    _representation->setReader(reader);
+    _representation->SetReader(reader);
     // save reader in first buffer
     _reader = reader;
     // create new reader for second buffer
@@ -182,7 +182,7 @@ void SceneVtkData::CreateCallbacks()
 void SceneVtkData::CreateSliders()
 {
     _sliders = std::make_shared<Sliders>(_renderWindow->GetInteractor(), _volumeProperty);
-    LayersConfiguration::setColorAndOpacityFunction(_volumeProperty, _slidersValue.Slider_L, _slidersValue.Slider_W);
+    LayersConfiguration::SetColorAndOpacityFunction(_volumeProperty, _slidersValue.Slider_L, _slidersValue.Slider_W);
 }
 
 
@@ -198,7 +198,7 @@ void SceneVtkData::SetupCallbacks()
     _callbacks->_callbacksData._interactor = _renderWindow->GetInteractor();
     _callbacks->_callbacksData._renderer = _renderer.Get();
 
-    _callbacks->setupCallbacks();
+    _callbacks->SetupCallbacks();
 }
 
 void SceneVtkData::RemoveCallbacks()
@@ -206,7 +206,7 @@ void SceneVtkData::RemoveCallbacks()
     _representation->_boxWidget->RemoveAllObservers();
     _sliders->_sliderWidget_L->RemoveAllObservers();
     _sliders->_sliderWidget_W->RemoveAllObservers();
-    _callbacks->disconnectCallbacks();
+    _callbacks->DisconnectCallbacks();
 }
 
 

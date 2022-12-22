@@ -3,7 +3,7 @@
 
 namespace LayersConfiguration
 {
-	void setColorAndOpacityFunction(vtkVolumeProperty* volumeProperty_, double wl_, double ww_)
+	void SetColorAndOpacityFunction(vtkVolumeProperty* volumeProperty_, double wl_, double ww_)
 	{
 		vtkColorTransferFunction* colFun = volumeProperty_->GetRGBTransferFunction();
 		colFun->RemoveAllPoints();

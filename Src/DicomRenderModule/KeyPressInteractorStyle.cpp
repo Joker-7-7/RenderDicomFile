@@ -34,7 +34,7 @@ void KeyPressInteractorStyle::OnLeftButtonUp()
 			{
 				double picked[3];
 				picker->GetPickPosition(picked);
-				_polylineWidget->insertNewPoint(picked);
+                _polylineWidget->InsertNewPoint(picked);
 			}
 		}
 	}
@@ -52,8 +52,8 @@ void KeyPressInteractorStyle::OnKeyDown()
 	const float positionStep = 0.05f;
 	if (_drill->IsChangingPositionMode())
 	{
-		_drill->moveDrillByKey(key, angleStep, positionStep);
-		_drill->drillingVolume(_volume, _imageCurrentData, _imagePreData);
+        _drill->MoveDrillByKey(key, angleStep, positionStep);
+        _drill->DrillingVolume(_volume, _imageCurrentData, _imagePreData);
 		_boxCallback->Execute(_boxWidget, static_cast<long>(vtkBoxCallback::BoxMode::Drilling), nullptr);
 		GetCurrentRenderer()->GetRenderWindow()->Render();
 	}
@@ -66,7 +66,7 @@ void KeyPressInteractorStyle::OnMouseMove()
 {
 	if (_polylineWidget && _polylineWidget->_isWidgetOn)
 	{
-		_polylineWidget->updateText();
+        _polylineWidget->UpdateText();
 	}
 	vtkInteractorStyleTrackballCamera::OnMouseMove();
 	GetCurrentRenderer()->GetRenderWindow()->WaitForCompletion();
@@ -83,44 +83,44 @@ void KeyPressInteractorStyle::OnKeyRelease()
 		}
 		else if (input == "z" || input == "Z")
 		{
-			_polylineWidget->deleteLastPoint();
+            _polylineWidget->DeleteLastPoint();
 		}
 		GetCurrentRenderer()->GetRenderWindow()->Render();
 	}
 	vtkInteractorStyleTrackballCamera::OnKeyRelease();
 }
 
-void KeyPressInteractorStyle::setDrill(Drill* drill)
+void KeyPressInteractorStyle::SetDrill(Drill* drill)
 {
 	_drill = drill;
 }
 
-void KeyPressInteractorStyle::setImageCurrentData(vtkImageData* imageCurrentData)
+void KeyPressInteractorStyle::SetImageCurrentData(vtkImageData* imageCurrentData)
 {
 	_imageCurrentData = imageCurrentData;
 }
 
-void KeyPressInteractorStyle::setImagePreData(vtkImageData* imagePreData)
+void KeyPressInteractorStyle::SetImagePreData(vtkImageData* imagePreData)
 {
 	_imagePreData = imagePreData;
 }
 
-void KeyPressInteractorStyle::setVolume(vtkVolume* volume)
+void KeyPressInteractorStyle::SetVolume(vtkVolume* volume)
 {
 	_volume = volume;
 }
 
-void KeyPressInteractorStyle::setBoxCallback(vtkBoxCallback* boxCallback)
+void KeyPressInteractorStyle::SetBoxCallback(vtkBoxCallback* boxCallback)
 {
 	_boxCallback = boxCallback;
 }
 
-void KeyPressInteractorStyle::setBoxWidget(vtkBoxWidget2* boxWidget)
+void KeyPressInteractorStyle::SetBoxWidget(vtkBoxWidget2* boxWidget)
 {
 	_boxWidget = boxWidget;
 }
 
-void KeyPressInteractorStyle::setPolyline(PolylineRulerWidget* polylineWidget)
+void KeyPressInteractorStyle::SetPolyline(PolylineRulerWidget* polylineWidget)
 {
 	_polylineWidget = polylineWidget;
 }
