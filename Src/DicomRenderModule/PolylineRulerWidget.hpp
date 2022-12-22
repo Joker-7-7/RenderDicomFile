@@ -94,7 +94,7 @@ public:
 	/// Get polyline length
 	/// </summary>
 	/// <returns></returns>
-	double GetLength() const noexcept;
+	[[nodiscard]] double GetLength() const noexcept;
 };
 
 #endif

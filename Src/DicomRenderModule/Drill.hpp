@@ -92,7 +92,7 @@ public:
 	/// <summary>
 	/// Get drill visibility
 	/// </summary>
-	bool GetVisibility() const noexcept;
+	[[nodiscard]] bool GetVisibility() const noexcept;
 
 	/// <summary>
 	/// Drill On visibility
