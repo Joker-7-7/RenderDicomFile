@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DEFAULTCONFIGCALLBACK_H
+#define DEFAULTCONFIGCALLBACK_H
 
 #include "AbstractCallback.h"
 #include "LayersConfiguration.h"
@@ -29,3 +30,5 @@ namespace LayersConfiguration
 		void Execute(vtkObject* caller_, unsigned long, void*) override;
 	};
 }
+
+#endif

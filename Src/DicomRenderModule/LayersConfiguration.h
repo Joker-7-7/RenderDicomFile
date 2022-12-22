@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LAYERSCONFIGURATION_H
+#define LAYERSCONFIGURATION_H
 
 #include "AbstractCallback.h"
 
@@ -25,3 +26,5 @@ namespace LayersConfiguration
 	/// <param name="ww"></param>
 	void setColorAndOpacityFunction(vtkVolumeProperty* volumeProperty_, double wl_, double ww_);
 }
+
+#endif

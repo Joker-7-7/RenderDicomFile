@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SKIDERS_H
+#define SKIDERS_H
 
 #include "LayersConfiguration.h"
 
@@ -24,3 +25,4 @@ public:
 
 	Sliders(vtkRenderWindowInteractor* iren_, vtkVolumeProperty* volumeProperty_);
 };
+#endif

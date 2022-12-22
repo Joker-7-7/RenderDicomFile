@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BUTTONPOLYLINERULERCALLBACK_H
+#define BUTTONPOLYLINERULERCALLBACK_H
 
 #include "AbstractCallback.h"
 #include "PolylineRulerWidget.h"
@@ -24,3 +25,5 @@ public:
 
 	~vtkButtonPolylineRulerCallback() override;
 };
+
+#endif

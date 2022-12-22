@@ -1,4 +1,5 @@
-#pragma once
+#ifndef POLYLINERULERWIDGET_H
+#define POLYLINERULERWIDGET_H
 
 #include <vtkSmartVolumeMapper.h>
 #include <vtkAbstractWidget.h>
@@ -97,3 +98,5 @@ public:
 	/// <returns></returns>
 	double getLenght();
 };
+
+#endif

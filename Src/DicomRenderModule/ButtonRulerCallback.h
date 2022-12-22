@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BUTTONRULERCALLBACK_H
+#define BUTTONRULERCALLBACK_H
 
 #include "AbstractCallback.h"
 
@@ -49,3 +50,5 @@ namespace RulerOptions
 		 ~vtkButtonRulerCallback() override;
 	};
 }
+
+#endif

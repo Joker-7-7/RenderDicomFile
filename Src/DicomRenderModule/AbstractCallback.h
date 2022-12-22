@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ABSTRACTCALLBACK_H
+#define ABSTRACTCALLBACK_H
 
 #include <vtkCommand.h>
 
@@ -14,3 +15,5 @@ public:
 	/// </summary>
 	virtual void Execute(vtkObject* caller_, unsigned long, void*) = 0;
 };
+
+#endif

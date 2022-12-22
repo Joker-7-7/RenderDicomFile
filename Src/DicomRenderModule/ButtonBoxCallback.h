@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BUTTONBOXCALLBACK_H
+#define BUTTONBOXCALLBACK_H
 
 #include "AbstractCallback.h"
 
@@ -23,3 +24,5 @@ public:
 
 	void Execute(vtkObject* caller_, unsigned long, void*) override;
 };
+
+#endif

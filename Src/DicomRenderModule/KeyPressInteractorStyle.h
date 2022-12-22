@@ -1,4 +1,5 @@
-#pragma once
+#ifndef KEYPRESSINTERACTORSTYLE_H
+#define KEYPRESSINTERACTORSTYLE_H
 
 #include "BoxCallbacks.h"
 #include "PolylineRulerWidget.h"
@@ -52,3 +53,5 @@ public:
 	void setBoxWidget(vtkBoxWidget2* boxWidget);
 	void setPolyline(PolylineRulerWidget* polylineWidget);
 };
+
+#endif

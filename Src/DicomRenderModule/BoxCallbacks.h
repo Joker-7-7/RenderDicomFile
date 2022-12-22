@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BOXCALLBACKS_H
+#define BOXCALLBACKS_H
 
 #include "AbstractCallback.h"
 #include <vtkObject.h>
@@ -35,3 +36,5 @@ public:
 
 	void Execute(vtkObject* caller_, unsigned long mode_, void*) override;
 };
+
+#endif

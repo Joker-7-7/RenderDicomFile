@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LSLIDERCALLBACKL_H
+#define LSLIDERCALLBACKL_H
 
 #include "AbstractCallback.h"
 #include "LayersConfiguration.h"
@@ -25,3 +26,5 @@ namespace LayersConfiguration
 		void Execute(vtkObject* caller_, unsigned long, void*) override;
 	};
 }
+
+#endif

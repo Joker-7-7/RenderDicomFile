@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DRILL_H
+#define DRILL_H
 
 #include <Src/GraphicPrimitives/GraphicPrimitives.h>
 
@@ -189,3 +190,5 @@ public:
 	[[nodiscard]] bool IsChangingPositionMode() const;
 
 };
+
+#endif

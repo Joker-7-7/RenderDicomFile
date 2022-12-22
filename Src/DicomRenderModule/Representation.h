@@ -1,4 +1,5 @@
-#pragma once
+#ifndef REPRESENTATION_H
+#define REPRESENTATION_H
 
 #include "KeyPressInteractorStyle.h"
 
@@ -31,3 +32,5 @@ public:
 	~Representation() = default;
 	void setReader(vtkImageReader2* ptrReader);
 };
+
+#endif

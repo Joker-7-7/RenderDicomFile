@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BUTTONDRILLCALLBACK_H
+#define BUTTONDRILLCALLBACK_H
 
 #include "AbstractCallback.h"
 #include "Drill.h"
@@ -19,3 +20,5 @@ public:
 
 	void Execute(vtkObject* caller_, unsigned long, void*) override;
 };
+
+#endif

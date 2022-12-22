@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CALLBACKS_H
+#define CALLBACKS_H
 
 #include "ButtonReverseDrillCallback.h"
 #include "ButtonPolylineRulerCallback.h"
@@ -13,7 +14,7 @@
 #include "ButtonRulerCallback.h"
 #include "BoxCallbacks.h"
 #include "ButtonBoxCallback.h"
-#include "VolumeParametersCallbacks.h"
+#include "VolumeParametersCallback.h"
 #include "ButtonVisibilityDrillCallback.h"
 
 #include "Representation.h"
@@ -69,3 +70,4 @@ public:
 	}
 };
 
+#endif
