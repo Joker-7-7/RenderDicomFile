@@ -15,18 +15,15 @@ namespace LayersConfiguration
 	class vtkSkinConfigCallback final : public AbstractCallback
 	{
 	public:
+        vtkVolumeProperty* _volumeProperty;
+        vtkSliderWidget* _sliderWidget_W;
+        vtkSliderWidget* _sliderWidget_L;
+        setupWLWW* _currentSetup;
+
+    public:
 		vtkSkinConfigCallback();
 
-		vtkVolumeProperty* _volumeProperty;
-
-		vtkSliderWidget* _sliderWidget_W;
-
-		vtkSliderWidget* _sliderWidget_L;
-
-		setupWLWW* _currentSetup;
-
 		static vtkSkinConfigCallback* New();
-
 		void Execute(vtkObject* caller_, unsigned long, void*) override;
 	};
 }

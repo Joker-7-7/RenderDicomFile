@@ -12,14 +12,12 @@ namespace GraphicPrimitives
 		double y;
 		double z;
 
-		Point3D() : x(0.0), y(0.0), z(0.0)
-		{}
+    public:
+		Point3D() : x(0.0), y(0.0), z(0.0) {}
 
-		Point3D(const double x, const  double y,const double z) : x(x), y(y), z(z)
-		{}
+		Point3D(const double x, const  double y,const double z) : x(x), y(y), z(z) {}
 
-		explicit Point3D(const double* value) : x(value[0]), y(value[1]), z(value[2])
-		{}
+		explicit Point3D(const double* value) : x(value[0]), y(value[1]), z(value[2]) {}
 
 		Point3D(const Point3D& point)
 		{

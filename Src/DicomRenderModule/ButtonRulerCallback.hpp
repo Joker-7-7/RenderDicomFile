@@ -24,8 +24,7 @@ namespace RulerOptions
 	/// <param name="eventId"></param>
 	/// <param name="clientData"></param>
 	/// <param name="vtkNotUsed"></param>
-	void clickCallbackFunction(vtkObject* caller_, long unsigned int eventId_, void* clientData_,
-	                           void* vtkNotUsed(callData));
+	void clickCallbackFunction(vtkObject* caller_, long unsigned int eventId_, void* clientData_, void* vtkNotUsed(callData));
 
 	/// <summary>
 	/// Callback for ruler button
@@ -33,21 +32,17 @@ namespace RulerOptions
 	class vtkButtonRulerCallback final : public AbstractCallback
 	{
 	public:
-		vtkButtonRulerCallback();
-
         vtkDistanceWidget* _distanceWidget;
-
         vtkDistanceWidget* _tempDistanceWidget;
+        vtkRenderWindowInteractor* _lIren;
+        bool _modeOn;
 
-		bool _modeOn;
-
-		vtkRenderWindowInteractor* _lIren;
+    public:
+		vtkButtonRulerCallback();
+        ~vtkButtonRulerCallback() override;
 
 		static vtkButtonRulerCallback* New();
-
 		void Execute(vtkObject* caller_, unsigned long, void*) override;
-
-		 ~vtkButtonRulerCallback() override;
 	};
 }
 

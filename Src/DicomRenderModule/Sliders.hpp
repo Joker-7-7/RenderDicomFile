@@ -20,9 +20,9 @@ public:
 	// slider for W parameter
 	vtkNew<vtkSliderWidget> _sliderWidget_W;
 	// setup ww and wl linking slider L and slider W
-	std::unique_ptr<LayersConfiguration::setupWLWW> _setupWLWWConfig =
-		std::make_unique<LayersConfiguration::setupWLWW>();
+	std::unique_ptr<LayersConfiguration::setupWLWW> _setupWLWWConfig = std::make_unique<LayersConfiguration::setupWLWW>();
 
+public:
 	Sliders(vtkRenderWindowInteractor* iren_, vtkVolumeProperty* volumeProperty_);
 };
 #endif

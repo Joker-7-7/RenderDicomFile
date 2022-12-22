@@ -17,32 +17,15 @@
 /// </summary>
 class KeyPressInteractorStyle : public vtkInteractorStyleTrackballCamera
 {
-private:
 
-	Drill* _drill;
-
-	vtkImageData* _imageCurrentData;
-
-	vtkImageData* _imagePreData;
-
-	vtkVolume* _volume;
-
-	vtkBoxCallback* _boxCallback;
-
-	vtkBoxWidget2* _boxWidget;
-
-	PolylineRulerWidget* _polylineWidget;
 public:
 	KeyPressInteractorStyle();
 
 	static KeyPressInteractorStyle* New();
 
 	void OnLeftButtonUp() override;
-
 	void OnKeyDown() override;
-
 	void OnMouseMove() override;
-
 	void OnKeyRelease() override;
 
 	void setDrill(Drill* drill);
@@ -52,6 +35,15 @@ public:
 	void setBoxCallback(vtkBoxCallback* boxCallback);
 	void setBoxWidget(vtkBoxWidget2* boxWidget);
 	void setPolyline(PolylineRulerWidget* polylineWidget);
+
+private:
+    Drill* _drill;
+    vtkImageData* _imageCurrentData;
+    vtkImageData* _imagePreData;
+    vtkVolume* _volume;
+    vtkBoxCallback* _boxCallback;
+    vtkBoxWidget2* _boxWidget;
+    PolylineRulerWidget* _polylineWidget;
 };
 
 #endif

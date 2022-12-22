@@ -20,7 +20,7 @@ void vtkBoxCallback::Execute(vtkObject* caller_, unsigned long mode_, void*)
 	const auto l_box_widget = vtkBoxWidget2::SafeDownCast(caller_);
 	dynamic_cast<vtkBoxRepresentation*>(l_box_widget->GetRepresentation())->GetPlanes(_planes);
 
-	if (mode_ != boxMode::Drilling)
+	if (static_cast<BoxMode>(mode_) != BoxMode::Drilling)
 	{
 		_imageCurrentData->DeepCopy(_imagePreData); 
 	}

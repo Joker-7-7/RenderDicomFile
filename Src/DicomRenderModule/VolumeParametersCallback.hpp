@@ -12,14 +12,13 @@
 class vtkButtonJitteringModeCallback final : public AbstractCallback
 {
 public:
+    vtkVolume* _volume;
+    bool _isJitteringMode;
+    
+public:
 	vtkButtonJitteringModeCallback();
 
-	vtkVolume* _volume;
-
-	bool _isJitteringMode;
-
 	static vtkButtonJitteringModeCallback* New();
-
 	void Execute(vtkObject* caller_, unsigned long, void*) override;
 };
 

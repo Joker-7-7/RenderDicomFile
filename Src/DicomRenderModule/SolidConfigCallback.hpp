@@ -15,18 +15,15 @@ namespace LayersConfiguration
 	class vtkSolidConfigCallback final : public AbstractCallback
 	{
 	public:
+        vtkVolumeProperty* _volumeProperty;
+        vtkSliderWidget* _sliderWidget_W;
+        vtkSliderWidget* _sliderWidget_L;
+        setupWLWW* _currentSetup;
+
+    public:
 		vtkSolidConfigCallback();
 
-		vtkVolumeProperty* _volumeProperty;
-
-		vtkSliderWidget* _sliderWidget_W;
-
-		vtkSliderWidget* _sliderWidget_L;
-
-		setupWLWW* _currentSetup;
-
 		static vtkSolidConfigCallback* New();
-
 		void Execute(vtkObject* caller_, unsigned long, void*) override;
 	};
 }

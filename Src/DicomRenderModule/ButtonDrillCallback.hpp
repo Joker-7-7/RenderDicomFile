@@ -10,14 +10,13 @@
 class vtkButtonDrillCallback final : public AbstractCallback
 {
 public:
+    Drill* _drill;
+    bool _modeOn;
+
+public:
 	vtkButtonDrillCallback();
 
-	Drill* _drill;
-
-	bool _modeOn;
-
 	static vtkButtonDrillCallback* New();
-
 	void Execute(vtkObject* caller_, unsigned long, void*) override;
 };
 

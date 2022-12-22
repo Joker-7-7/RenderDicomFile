@@ -1,4 +1,4 @@
-#include "GraphicPrimitives.h"
+#include "GraphicPrimitives.hpp"
 
 namespace GraphicPrimitives
 {

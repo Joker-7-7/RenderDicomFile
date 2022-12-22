@@ -11,19 +11,16 @@
 class vtkButtonPolylineRulerCallback final : public AbstractCallback
 {
 public:
+    PolylineRulerWidget* _widget;
+    vtkRenderWindowInteractor* _lIren;
+    bool _modeOn;
+
+public:
 	vtkButtonPolylineRulerCallback();
-
-	PolylineRulerWidget* _widget;
-
-	vtkRenderWindowInteractor* _lIren;
-
-	bool _modeOn;
+    ~vtkButtonPolylineRulerCallback() override;
 
 	static vtkButtonPolylineRulerCallback* New();
-
 	void Execute(vtkObject* caller_, unsigned long, void*) override;
-
-	~vtkButtonPolylineRulerCallback() override;
 };
 
 #endif

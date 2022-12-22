@@ -28,8 +28,10 @@ public:
 	// dynamic orientation axis
 	vtkNew<vtkCameraOrientationWidget> _cameraAxisOrientManipulator;
 
+public:
 	Representation(vtkRenderWindowInteractor* iren_, vtkRenderer* renderer_);
 	~Representation() = default;
+
 	void setReader(vtkImageReader2* ptrReader);
 };
 

@@ -10,12 +10,12 @@
 class vtkButtonReverseDrillCallback final : public AbstractCallback
 {
 public:
+    Drill* _drill;
+
+public:
 	vtkButtonReverseDrillCallback();
 
-	Drill* _drill;
-
 	static vtkButtonReverseDrillCallback* New();
-
 	void Execute(vtkObject* caller_, unsigned long, void*) override;
 };
 

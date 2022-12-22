@@ -10,12 +10,12 @@
 class vtkButtonVisibilityDrillCallback final : public AbstractCallback
 {
 public:
+    Drill* _drill;
+
+public:
 	vtkButtonVisibilityDrillCallback();
 
-	Drill* _drill;
-
 	static vtkButtonVisibilityDrillCallback* New();
-
 	void Execute(vtkObject* caller_, unsigned long, void*) override;
 };
 

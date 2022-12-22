@@ -6,8 +6,7 @@
 /// <summary>
 /// Abstract callbacks class for all callbacks in the project
 /// </summary>
-class AbstractCallback
-	: public vtkCommand
+class AbstractCallback : public vtkCommand
 {
 public:
 	/// <summary>

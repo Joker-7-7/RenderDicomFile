@@ -2,6 +2,7 @@
 #define BOXCALLBACKS_H
 
 #include "AbstractCallback.hpp"
+
 #include <vtkObject.h>
 #include <vtkBoxWidget2.h>
 #include <vtkNew.h>
@@ -19,21 +20,19 @@
 class vtkBoxCallback final : public AbstractCallback
 {
 public:
-	enum boxMode{
+	enum class BoxMode{
 		Drilling = 10
 	};
+
+    vtkVolume* _volume;
+    vtkPlanes* _planes;
+    vtkImageData* _imageCurrentData;
+    vtkImageData* _imagePreData;
+
+public:
 	vtkBoxCallback();
 
-	vtkVolume* _volume;
-
-	vtkPlanes* _planes;
-
-	vtkImageData* _imageCurrentData;
-
-	vtkImageData* _imagePreData;
-
 	static vtkBoxCallback* New();
-
 	void Execute(vtkObject* caller_, unsigned long mode_, void*) override;
 };
 

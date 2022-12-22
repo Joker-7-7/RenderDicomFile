@@ -54,7 +54,7 @@ void KeyPressInteractorStyle::OnKeyDown()
 	{
 		_drill->moveDrillByKey(key, angleStep, positionStep);
 		_drill->drillingVolume(_volume, _imageCurrentData, _imagePreData);
-		_boxCallback->Execute(_boxWidget, vtkBoxCallback::Drilling, nullptr);
+		_boxCallback->Execute(_boxWidget, static_cast<long>(vtkBoxCallback::BoxMode::Drilling), nullptr);
 		GetCurrentRenderer()->GetRenderWindow()->Render();
 	}
 	// Forward events

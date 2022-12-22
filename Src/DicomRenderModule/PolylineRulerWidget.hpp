@@ -59,16 +59,15 @@ public:
 	// polyline widget On/Off
 	bool _isWidgetOn;
 
+public:
 	PolylineRulerWidget();
-
 	~PolylineRulerWidget() override;
 
+    static PolylineRulerWidget* New();
+
 	PolylineRulerWidget(const PolylineRulerWidget&) = delete;
-
 	void operator=(const PolylineRulerWidget&) = delete;
-
-	static PolylineRulerWidget* New();
-
+    
 	void CreateDefaultRepresentation() override;
 
 	/// <summary>

@@ -46,6 +46,7 @@ public:
 	vtkSmartPointer<vtkCallbackCommand> _drillMovedClickCallback;
 	vtkSmartPointer<KeyPressInteractorStyle> _interactorStyleCallback;
 
+public:
 	Callbacks() = default;
 
 	void setupCallbacks();

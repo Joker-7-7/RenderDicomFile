@@ -15,14 +15,13 @@ namespace LayersConfiguration
 	class vtkLSliderCallback_W final : public AbstractCallback
 	{
 	public:
+        vtkVolumeProperty* _volumeProperty;
+        setupWLWW* _currentSetup;
+
+    public:
 		vtkLSliderCallback_W();
 
-		vtkVolumeProperty* _volumeProperty;
-
-		setupWLWW* _currentSetup;
-
 		static vtkLSliderCallback_W* New();
-
 		void Execute(vtkObject* caller_, unsigned long, void*) override;
 	};
 }

@@ -1,7 +1,7 @@
 #ifndef DRILL_H
 #define DRILL_H
 
-#include <Src/GraphicPrimitives/GraphicPrimitives.h>
+#include "Src/GraphicPrimitives/GraphicPrimitives.hpp"
 
 #include <vtkRenderer.h>
 #include <vtkImageData.h>
@@ -34,23 +34,6 @@ enum class DrillVisibilityMode
 /// </summary>
 class Drill
 {
-private:
-	// .stl model drill  
-	vtkNew<vtkActor> _drillActor;
-	// drill tip object in a rendered scene 
-	vtkNew<vtkActor> _tipActor;
-	// Length drill tip
-    LengthSetup _lengthTip;
-	// Drill visibility mode
-	DrillVisibilityMode _mode;
-	// reverse mode
-	int _reverse;
-	// movement lock
-	bool _changePosition;
-
-protected:
-	bool checkPointBoundaries(const GraphicPrimitives::Point3D& ijk, const int* iExtents);
-
 public:
 	Drill();
 
@@ -189,6 +172,22 @@ public:
 	/// </summary>
 	[[nodiscard]] bool IsChangingPositionMode() const;
 
+protected:
+    bool checkPointBoundaries(const GraphicPrimitives::Point3D& ijk, const int* iExtents);
+
+private:
+    // .stl model drill
+    vtkNew<vtkActor> _drillActor;
+    // drill tip object in a rendered scene
+    vtkNew<vtkActor> _tipActor;
+    // Length drill tip
+    LengthSetup _lengthTip;
+    // Drill visibility mode
+    DrillVisibilityMode _mode;
+    // reverse mode
+    int _reverse;
+    // movement lock
+    bool _changePosition;
 };
 
 #endif
