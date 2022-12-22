@@ -157,7 +157,7 @@ public:
 	/// </summary>
 	void ReverseDrill();
 	/// <summary>
-	/// Mov� drill by key
+	/// Move drill by key
 	/// </summary>
 	/// <param name="key_"></param>
 	/// <param name="angleStep"></param>

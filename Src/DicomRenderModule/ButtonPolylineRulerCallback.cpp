@@ -4,8 +4,8 @@
 
 vtkButtonPolylineRulerCallback::vtkButtonPolylineRulerCallback()
 {
-	_widget = nullptr;
-	_lIren = nullptr;
+    _polylineWidget = nullptr;
+    _interactor = nullptr;
 	_modeOn = true;
 }
 
@@ -18,23 +18,23 @@ void vtkButtonPolylineRulerCallback::Execute(vtkObject* caller_, unsigned long, 
 {
 	if (_modeOn)
 	{
-		_widget = PolylineRulerWidget::New();
-		_widget->SetInteractor(_lIren);
-		_widget->Execute();
+        _polylineWidget = PolylineRulerWidget::New();
+		_polylineWidget->SetInteractor(_interactor);
+		_polylineWidget->Execute();
 	}
 	else
 	{
-		_widget->Delete();
-		_widget = nullptr;
+		_polylineWidget->Delete();
+        _polylineWidget = nullptr;
 	}
 	_modeOn = !_modeOn;
-    dynamic_cast<KeyPressInteractorStyle *>(_lIren->GetInteractorStyle())->SetPolyline(_widget);
+    dynamic_cast<KeyPressInteractorStyle *>(_interactor->GetInteractorStyle())->SetPolyline(_polylineWidget);
 }
 
 vtkButtonPolylineRulerCallback::~vtkButtonPolylineRulerCallback()
 {
-	if (_widget)
+	if (_polylineWidget)
 	{
-		_widget->Delete();
+		_polylineWidget->Delete();
 	}
 }

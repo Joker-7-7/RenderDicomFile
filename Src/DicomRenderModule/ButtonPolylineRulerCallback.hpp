@@ -11,8 +11,8 @@
 class vtkButtonPolylineRulerCallback final : public AbstractCallback
 {
 public:
-    PolylineRulerWidget* _widget;
-    vtkRenderWindowInteractor* _lIren;
+    PolylineRulerWidget* _polylineWidget;
+    vtkRenderWindowInteractor* _interactor;
     bool _modeOn;
 
 public:

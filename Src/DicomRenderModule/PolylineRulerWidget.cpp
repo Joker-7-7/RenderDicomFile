@@ -39,7 +39,7 @@ void PolylineRulerWidget::CreateDefaultRepresentation()
 	}
 }
 
-double PolylineRulerWidget::GetLenght()
+double PolylineRulerWidget::GetLength()
 {
 	double sum = 0.0;
 
@@ -102,7 +102,7 @@ void PolylineRulerWidget::InsertNewPoint(double vs_[3])
 
 	_sphereActors.push_back(sphereActor);
 
-	const double dPolylineLen = GetLenght();
+	const double dPolylineLen = GetLength();
 	const auto output = std::to_string(dPolylineLen);
 	_text->SetInput(output.c_str());
 
@@ -156,7 +156,7 @@ void PolylineRulerWidget::DeleteLastPoint()
 	_mapper->Update();
 	_actor->SetMapper(_mapper);
 
-	const double dPolylineLen = GetLenght();
+	const double dPolylineLen = GetLength();
 	const auto output = std::to_string(dPolylineLen);
 	_text->SetInput(output.c_str());
 

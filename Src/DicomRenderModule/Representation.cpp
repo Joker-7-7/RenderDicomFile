@@ -18,7 +18,7 @@ Representation::Representation(vtkRenderWindowInteractor* iren_, vtkRenderer* re
 
     _cameraAxisOrientManipulator->SetParentRenderer(renderer_);
     _cameraAxisOrientManipulator->SetInteractor(iren_);
-    //_cameraAxisOrientManipulator->On();
+    _cameraAxisOrientManipulator->On();
 }
 
 void Representation::SetReader(vtkImageReader2* ptrReader)

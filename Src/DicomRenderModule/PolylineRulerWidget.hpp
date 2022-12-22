@@ -92,10 +92,10 @@ public:
 	void UpdateText();
 
 	/// <summary>
-	/// Get polyline lenght
+	/// Get polyline length
 	/// </summary>
 	/// <returns></returns>
-	double GetLenght();
+	double GetLength();
 };
 
 #endif

@@ -31,13 +31,13 @@ void Callbacks::SetupCallbacks()
 
 #pragma region create ruler button callback
 	vtkSmartPointer<RulerOptions::vtkButtonRulerCallback> _distanceCallbackButton = RulerOptions::vtkButtonRulerCallback::New();
-	_distanceCallbackButton->_lIren = _callbacksData._interactor;
+	_distanceCallbackButton->_interactor = _callbacksData._interactor;
 	_vectorCallbacks.push_back(_distanceCallbackButton.Get());
 #pragma endregion
 
 #pragma region create polyline ruler button callback
 	vtkSmartPointer<vtkButtonPolylineRulerCallback> _polylineRulerCallbackButton = vtkButtonPolylineRulerCallback::New();
-	_polylineRulerCallbackButton->_lIren = _callbacksData._interactor;
+	_polylineRulerCallbackButton->_interactor = _callbacksData._interactor;
 	_vectorCallbacks.push_back(_polylineRulerCallbackButton.Get());
 #pragma endregion
 

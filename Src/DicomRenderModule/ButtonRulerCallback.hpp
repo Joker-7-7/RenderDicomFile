@@ -34,7 +34,7 @@ namespace RulerOptions
 	public:
         vtkDistanceWidget* _distanceWidget;
         vtkDistanceWidget* _tempDistanceWidget;
-        vtkRenderWindowInteractor* _lIren;
+        vtkRenderWindowInteractor* _interactor;
         bool _modeOn;
 
     public:

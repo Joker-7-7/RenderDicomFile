@@ -1,7 +1,5 @@
 #include "BoxCallbacks.hpp"
 
-
-
 vtkBoxCallback::vtkBoxCallback()
 {
 	_volume = nullptr;

@@ -45,7 +45,7 @@ namespace RulerOptions
 	{
 		_distanceWidget = nullptr;
 		_tempDistanceWidget = nullptr;
-		_lIren = nullptr;
+        _interactor = nullptr;
 		_modeOn = false;
 	}
 
@@ -61,7 +61,7 @@ namespace RulerOptions
 		if (_modeOn)
 		{
 			_distanceWidget = vtkDistanceWidget::New();
-			_distanceWidget->SetInteractor(_lIren);
+			_distanceWidget->SetInteractor(_interactor);
 			_distanceWidget->SetWidgetStateToManipulate();
 			dynamic_cast<vtkDistanceRepresentation*>(_distanceWidget->GetRepresentation())->
 				SetLabelFormat("%-#6.3g mm");
@@ -73,7 +73,7 @@ namespace RulerOptions
 
 			vtkNew<vtkDistanceRepresentation3D> repres;
 			_tempDistanceWidget = vtkDistanceWidget::New();
-			_tempDistanceWidget->SetInteractor(_lIren);
+			_tempDistanceWidget->SetInteractor(_interactor);
 			_tempDistanceWidget->SetRepresentation(repres);
 
 			vtkNew<vtkCallbackCommand> clickCallback;
