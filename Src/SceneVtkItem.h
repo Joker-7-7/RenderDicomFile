@@ -8,11 +8,10 @@
 class SceneVtkItem : public QQuickVtkItem
 {
 public:
-Q_OBJECT
+    Q_OBJECT
 public:
 
     vtkUserData initializeVTK(vtkRenderWindow *renderWindow) override;
-
     /// <summary>
     /// Open file button click
     /// </summary>
@@ -33,7 +32,7 @@ public:
     /// Clipping Box button click
     /// </summary>
     Q_INVOKABLE void OnClickButtonBoxRep();
-        /// <summary>
+    /// <summary>
     /// Teeth Config button click
     /// </summary>
     Q_INVOKABLE void OnClickButtonTeethConfig();
@@ -49,11 +48,22 @@ public:
     /// Jittering mode button click
     /// </summary>
     Q_INVOKABLE void OnClickButtonJitteringMode();
+
 signals:
     void showMessageBox();
-public:
+
+private:
     SceneVtkData* _sceneData;
 
+private:
+    template<class T>
+    void TryToExecute()
+    {
+        std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
+            _sceneData->Execute<T>();
+        });
+        QQuickVtkItem::dispatch_async(foo);
+    }
 };
 
-#endif // MYVTKITEM_H
+#endif

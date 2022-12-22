@@ -22,37 +22,36 @@ struct SlidersValue{
 struct SceneVtkData : vtkObject
 {
 public:
-    // sliders value
+    // Sliders value
     SlidersValue _slidersValue;
-    // window refresh rate when rotating the model
-    const double _desiredUpdateRate;
-    // window background color
+    // Window background color
     const double _backgroundColor[3];
-    // represents a volume (data & properties) in a rendered scene
+    // Represents a volume (data & properties) in a rendered scene
     vtkNew<vtkVolume> _volume;
-    // represents the common properties for rendering a volume
+    // Represents the common properties for rendering a volume
     vtkNew<vtkVolumeProperty> _volumeProperty;
-    // reader for first buffer
+    // Reader for first buffer
     vtkSmartPointer<vtkImageReader2> _reader;
-    // reader for second buffer
+    // Reader for second buffer
     vtkSmartPointer<vtkImageReader2> _preReader;
-    // scene view elements
+    // Scene view elements
     std::shared_ptr<Representation> _representation;
-    // app sliders
+    // App sliders
     std::shared_ptr<Sliders> _sliders;
-    // app callbacks
+    // App callbacks
     std::shared_ptr<Callbacks> _callbacks;
-    // twin of the drill
+    // Twin of the drill
     std::shared_ptr<Drill> _drill;
-
+    // Is an object that controls the rendering process for objects
     vtkNew<vtkRenderer> _renderer;
-
+    // A window in a graphical user interface where renderers draw their images
     vtkSmartPointer<vtkRenderWindow> _renderWindow;
 
 public:
+    vtkTypeMacro(SceneVtkData, vtkObject);
+
     static SceneVtkData* New();
 
-    vtkTypeMacro(SceneVtkData, vtkObject);
     SceneVtkData();
 
     void InitSceneVTKData(vtkRenderWindow *renderWindow);
@@ -62,7 +61,7 @@ public:
     /// <param name="param[in] dataSet The data set to add"></param>
     void AddDataSet(vtkSmartPointer<vtkImageReader2> dataSet);
     /// <summary>
-    /// Setup m_ptrRenderer, m_ptrRenderWindow, m_ptrInterator
+    /// Setup _renderer, _renderWindow, _interactor
     /// </summary>
     void SetupRender();
     /// <summary>
@@ -95,13 +94,17 @@ public:
     /// </summary>
     void CreateSliders();
     /// <summary>
-    /// Create all callbcaks in the app
+    /// Create all callbacks in the app
     /// </summary>
     void CreateCallbacks();
     /// <summary>
-    /// Setup all callbcaks in the app
+    /// Setup all callbacks in the app
     /// </summary>
     void SetupCallbacks();
+    /// <summary>
+    /// Zoom to the extent of the data set in the scene
+    /// </summary>
+    void ZoomToExtent() const;
     /// <summary>
     /// Open single DICOM file
     /// </summary>
@@ -115,6 +118,12 @@ public:
     /// <returns>Error value code</returns>
     [[nodiscard]] bool OpenDirectory(QString directory);
 
+    /**
+     * Сheck the validity of the reader and add data to the scene if successful
+     * @param reader Reader with selected file
+     * @param dataSet Dataset for render
+     * @return Error code: true - success, false - error
+     */
     [[nodiscard]] bool CheckReader(vtkSmartPointer<vtkDICOMReader> reader, vtkSmartPointer<vtkImageReader2> dataSet);
 
 public:
@@ -124,15 +133,10 @@ public:
         if(_callbacks) {
             AbstractCallback* callback_ = _callbacks->getCallback<T>();
             if (callback_) {
-                callback_->Execute(NULL, NULL, NULL);
+                callback_->Execute(nullptr, NULL, nullptr);
             }
         }
     }
-
-    /// <summary>
-    /// Zoom to the extent of the data set in the scene
-    /// </summary>
-    void ZoomToExtent();
 };
 
-#endif // MYVTKDATA_H
+#endif

@@ -5,15 +5,13 @@
 
 vtkStandardNewMacro(SceneVtkData);
 
-
 QQuickVtkItem::vtkUserData SceneVtkItem::initializeVTK(vtkRenderWindow *renderWindow)
 {
-    auto vtk = vtkNew<SceneVtkData>();
-    _sceneData = vtk;
+    auto vtkScene = vtkNew<SceneVtkData>();
+    _sceneData = vtkScene;
     _sceneData->InitSceneVTKData(renderWindow);
-    // A renderer and render window
 
-    return vtk;
+    return vtkScene;
 }
 
 void SceneVtkItem::OnClickButtonOpenDirectory(QString directory) {
@@ -44,43 +42,26 @@ void SceneVtkItem::OnClickButtonResetCamera() {
     QQuickVtkItem::dispatch_async(foo);
 }
 
+
 void SceneVtkItem::OnClickButtonRuler() {
-    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
-        _sceneData->Execute<RulerOptions::vtkButtonRulerCallback>();
-    });
-    QQuickVtkItem::dispatch_async(foo);
+    TryToExecute<RulerOptions::vtkButtonRulerCallback>();
 }
 
 void SceneVtkItem::OnClickButtonBoxRep() {
-    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
-        _sceneData->Execute<vtkButtonBoxCallback>();
-    });
-    QQuickVtkItem::dispatch_async(foo);
+    TryToExecute<vtkButtonBoxCallback>();
 }
 
 void SceneVtkItem::OnClickButtonTeethConfig() {
-    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
-        _sceneData->Execute<LayersConfiguration::vtkTeethConfigCallback>();
-    });
-    QQuickVtkItem::dispatch_async(foo);
+    TryToExecute<LayersConfiguration::vtkTeethConfigCallback>();
 }
 
 void SceneVtkItem::OnClickButtonSolidConfig() {
-    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
-        _sceneData->Execute<LayersConfiguration::vtkSolidConfigCallback>();
-    });
-    QQuickVtkItem::dispatch_async(foo);
+    TryToExecute<LayersConfiguration::vtkSolidConfigCallback>();
 }
 
 void SceneVtkItem::OnClickButtonSkinConfig() {
-    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
-        _sceneData->Execute<LayersConfiguration::vtkSkinConfigCallback>();
-    });
-    QQuickVtkItem::dispatch_async(foo);
-
-}void SceneVtkItem::OnClickButtonJitteringMode() {
-    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* w, const vtkUserData& ){
-        _sceneData->Execute<vtkButtonJitteringModeCallback>();
-    });
-    QQuickVtkItem::dispatch_async(foo);
-    }
+    TryToExecute<LayersConfiguration::vtkSkinConfigCallback>();
+}
+void SceneVtkItem::OnClickButtonJitteringMode() {
+    TryToExecute<vtkButtonJitteringModeCallback>();
+}

@@ -16,11 +16,11 @@
 
 SceneVtkData::SceneVtkData() :
             _backgroundColor{0.3, 0.3, 0.3}
-            , _desiredUpdateRate(30){
+{
 }
 
-void SceneVtkData::InitSceneVTKData(vtkRenderWindow *renderWindow) {
-
+void SceneVtkData::InitSceneVTKData(vtkRenderWindow *renderWindow)
+{
     _renderWindow = renderWindow;
     SetupRender();
     SetupGPU();
@@ -31,8 +31,8 @@ void SceneVtkData::InitSceneVTKData(vtkRenderWindow *renderWindow) {
     CreateCallbacks();
 }
 
-void SceneVtkData::SetupRender() {
-
+void SceneVtkData::SetupRender()
+{
     vtkNew<vtkInteractorStyleTrackballCamera> style;
     style->SetDefaultRenderer(_renderer);
 
@@ -44,8 +44,8 @@ void SceneVtkData::SetupRender() {
     _renderer->SetBackground(_backgroundColor);
 }
 
-void SceneVtkData::SetupGPU() {
-
+void SceneVtkData::SetupGPU()
+{
     // Setup Volume property
     vtkNew<vtkColorTransferFunction> m_ptrColorFunction;
     vtkNew<vtkPiecewiseFunction> m_ptrOpacityFunction;
@@ -58,11 +58,11 @@ void SceneVtkData::SetupGPU() {
     _volumeProperty->SetSpecular(0.25);
     _volumeProperty->SetSpecularPower(40);
 
-
     _volume->SetProperty(_volumeProperty);
 }
 
-void SceneVtkData::AddDataSet(vtkSmartPointer<vtkImageReader2> reader) {
+void SceneVtkData::AddDataSet(vtkSmartPointer<vtkImageReader2> reader)
+{
     RemoveDataSet();
     RemoveCallbacks();
 
@@ -75,7 +75,6 @@ void SceneVtkData::AddDataSet(vtkSmartPointer<vtkImageReader2> reader) {
     mapper->SetMaximumImageSampleDistance(1.0);
     mapper->UseJitteringOn();
 
-
     _volume->SetProperty(_volumeProperty);
     _volume->SetMapper(mapper);
 
@@ -83,14 +82,16 @@ void SceneVtkData::AddDataSet(vtkSmartPointer<vtkImageReader2> reader) {
     _renderer->ResetCamera();
 }
 
-void SceneVtkData::RemoveDataSet() {
+void SceneVtkData::RemoveDataSet()
+{
     vtkProp* volume = _renderer->GetVolumes()->GetLastProp();
     if (volume != nullptr) {
         _renderer->RemoveVolume(volume);
     }
 }
 
-void SceneVtkData::SetupReader(vtkSmartPointer<vtkImageReader2> reader) {
+void SceneVtkData::SetupReader(vtkSmartPointer<vtkImageReader2> reader)
+{
     _representation->setReader(reader);
     // save reader in first buffer
     _reader = reader;
@@ -144,8 +145,8 @@ bool SceneVtkData::OpenSingleFile(QString singleFile)
 }
 
 
-bool SceneVtkData::CheckReader(vtkSmartPointer<vtkDICOMReader> reader, vtkSmartPointer<vtkImageReader2> dataSet) {
-
+bool SceneVtkData::CheckReader(vtkSmartPointer<vtkDICOMReader> reader, vtkSmartPointer<vtkImageReader2> dataSet)
+{
     if (reader->GetErrorCode() == 0)
         dataSet = reader;
 
@@ -158,23 +159,35 @@ bool SceneVtkData::CheckReader(vtkSmartPointer<vtkDICOMReader> reader, vtkSmartP
     return false;
 }
 
-void SceneVtkData::ZoomToExtent() {
+void SceneVtkData::ZoomToExtent() const
+{
     _renderer->ResetCamera();
 }
 
-void SceneVtkData::CreateRepresentations() {
+void SceneVtkData::CreateRepresentations()
+{
     _representation = std::make_shared<Representation>(_renderWindow->GetInteractor(), _renderer.Get());
 }
 
-void SceneVtkData::CreateDrill() {
+void SceneVtkData::CreateDrill()
+{
     _drill = std::make_shared<Drill>(_renderer);
 }
 
-void SceneVtkData::CreateCallbacks() {
+void SceneVtkData::CreateCallbacks()
+{
     _callbacks = std::make_shared<Callbacks>();
 }
 
-void SceneVtkData::SetupCallbacks() {
+void SceneVtkData::CreateSliders()
+{
+    _sliders = std::make_shared<Sliders>(_renderWindow->GetInteractor(), _volumeProperty);
+    LayersConfiguration::setColorAndOpacityFunction(_volumeProperty, _slidersValue.Slider_L, _slidersValue.Slider_W);
+}
+
+
+void SceneVtkData::SetupCallbacks()
+{
     _callbacks->_callbacksData._volume = _volume.Get();
     _callbacks->_callbacksData._representation = _representation.get();
     _callbacks->_callbacksData._sliders = _sliders.get();
@@ -196,9 +209,5 @@ void SceneVtkData::RemoveCallbacks()
     _callbacks->disconnectCallbacks();
 }
 
-void SceneVtkData::CreateSliders() {
-    _sliders = std::make_shared<Sliders>(_renderWindow->GetInteractor(), _volumeProperty);
-    LayersConfiguration::setColorAndOpacityFunction(_volumeProperty, _sliders->_setupWLWWConfig->wl, _sliders->_setupWLWWConfig->ww);
-}
 
 
