@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 project(QtQuickVTKNewVersion VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -15,12 +16,11 @@ find_package(Qt6 COMPONENTS REQUIRED
         OpenGL
         MultimediaWidgets
         OpenGLWidgets
-        )
+)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-
 
 find_package(VTK 9.1 COMPONENTS REQUIRED
         IOGeometry
@@ -45,7 +45,8 @@ find_package(VTK 9.1 COMPONENTS REQUIRED
         RenderingAnnotation
         DICOM
         InteractionImage
-        )
+)
+
 
 file (GLOB_RECURSE Sources Src/*.cpp)
 file (GLOB         QtResources *.qrc)
@@ -59,7 +60,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Widgets
         PRIVATE Qt6::Quick
         PRIVATE Qt6::OpenGLWidgets
         PRIVATE ${VTK_LIBRARIES}
-        )
+)
 
 vtk_module_autoinit(
         TARGETS ${PROJECT_NAME}
