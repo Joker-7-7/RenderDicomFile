@@ -1,67 +1,76 @@
-
 #include "SceneVtkItem.hpp"
 
 #include <vtkRenderWindow.h>
 
 vtkStandardNewMacro(SceneVtkData);
 
-QQuickVtkItem::vtkUserData SceneVtkItem::initializeVTK(vtkRenderWindow *renderWindow)
-{
+QQuickVtkItem::vtkUserData SceneVtkItem::initializeVTK(vtkRenderWindow* renderWindow) {
     auto vtkScene = vtkNew<SceneVtkData>();
     _sceneData = vtkScene;
     _sceneData->InitSceneVTKData(renderWindow);
-
     return vtkScene;
 }
 
-void SceneVtkItem::OnClickButtonOpenDirectory(QString directory) {
-    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this, directory] (vtkRenderWindow* , const vtkUserData& ){
-        if(!_sceneData->OpenDirectory(directory))
-        {
+void SceneVtkItem::OnOpenDirectoryClicked(QString directory) {
+    std::function<void(vtkRenderWindow *, vtkUserData)> openDirectory([this, directory](vtkRenderWindow*, const vtkUserData&) {
+        if (!_sceneData->OpenDirectory(directory)) {
             emit showMessageBox();
         }
     });
-    QQuickVtkItem::dispatch_async(foo);
+    QQuickVtkItem::dispatch_async(openDirectory);
 }
 
-void SceneVtkItem::OnClickButtonOpenFile(QString singleFile) {
-
-    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this, singleFile] (vtkRenderWindow* , const vtkUserData& ){
-        if(!_sceneData->OpenSingleFile(singleFile))
-        {
+void SceneVtkItem::OnOpenFileClicked(QString singleFile) {
+    std::function<void(vtkRenderWindow*, vtkUserData)> openFile([this, singleFile](vtkRenderWindow*, const vtkUserData&) {
+        if (!_sceneData->OpenSingleFile(singleFile)) {
             emit showMessageBox();
         }
     });
-    QQuickVtkItem::dispatch_async(foo);
+    QQuickVtkItem::dispatch_async(openFile);
 }
 
-void SceneVtkItem::OnClickButtonResetCamera() {
-    std::function<void(vtkRenderWindow*, vtkUserData)> foo([this] (vtkRenderWindow* , const vtkUserData& ){
+void SceneVtkItem::OnResetCameraClicked() {
+    std::function<void(vtkRenderWindow*, vtkUserData)> zoomExtent([this](vtkRenderWindow*, const vtkUserData&) {
         _sceneData->ZoomToExtent();
     });
-    QQuickVtkItem::dispatch_async(foo);
+    QQuickVtkItem::dispatch_async(zoomExtent);
 }
 
+void SceneVtkItem::OnSliderChanged(int value, QString sliderType) {
+    std::function<void(vtkRenderWindow*, vtkUserData)> sliderChanged([this, value, sliderType](vtkRenderWindow*, const vtkUserData&) {
+        if (sliderType == "W") {
+            _sceneData->viewSettings.wLevel = value;
+        }
+        else if (sliderType == "L") {
+            _sceneData->viewSettings.lLevel = value;
+        }
+        LayersConfiguration::SetColorAndOpacityFunction(_sceneData->volumeProperty, _sceneData->viewSettings.lLevel, _sceneData->viewSettings.wLevel);
+    });
+    QQuickVtkItem::dispatch_async(sliderChanged);
+}
 
-void SceneVtkItem::OnClickButtonRuler() {
+void SceneVtkItem::OnRulerClicked() {
     TryToExecute<RulerOptions::vtkButtonRulerCallback>();
 }
 
-void SceneVtkItem::OnClickButtonBoxRep() {
+void SceneVtkItem::OnBoxRepresentationClicked() {
     TryToExecute<vtkButtonBoxCallback>();
 }
 
-void SceneVtkItem::OnClickButtonTeethConfig() {
+void SceneVtkItem::OnTeethConfigClicked() {
     TryToExecute<LayersConfiguration::vtkTeethConfigCallback>();
 }
 
-void SceneVtkItem::OnClickButtonSolidConfig() {
+void SceneVtkItem::OnSolidConfigClicked() {
     TryToExecute<LayersConfiguration::vtkSolidConfigCallback>();
 }
 
-void SceneVtkItem::OnClickButtonSkinConfig() {
+void SceneVtkItem::OnSkinConfigClicked() {
     TryToExecute<LayersConfiguration::vtkSkinConfigCallback>();
 }
-void SceneVtkItem::OnClickButtonJitteringMode() {
+
+void SceneVtkItem::OnJitteringModeClicked() {
     TryToExecute<vtkButtonJitteringModeCallback>();
 }
+
+

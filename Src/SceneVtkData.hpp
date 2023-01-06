@@ -1,8 +1,8 @@
 #ifndef SCENEVTKDATA_H
 #define SCENEVTKDATA_H
 
-#include "Src/DicomRenderModule/Callbacks.hpp"
-#include "Src/DicomRenderModule/Representation.hpp"
+#include "Src/DicomRenderModule/Callbacks/Callbacks.hpp"
+#include "Src//DicomRenderModule/SceneInteractionParameters/Representation.hpp"
 
 #include <QString.h>
 
@@ -14,39 +14,18 @@
 #include <vtkImageReader2.h>
 #include <vtkDICOMReader.h>
 
-struct SlidersValue{
-    int Slider_L = 900;
-    int Slider_W = 300;
-};
-
-struct SceneVtkData : vtkObject
+class SceneVtkData : public vtkObject
 {
 public:
+    struct ViewSettings
+    {
+        int lLevel = 900;
+        int wLevel = 300;
+    };
     // Sliders value
-    SlidersValue _slidersValue;
-    // Window background color
-    const double _backgroundColor[3];
-    // Represents a volume (data & properties) in a rendered scene
-    vtkNew<vtkVolume> _volume;
+    ViewSettings viewSettings;
     // Represents the common properties for rendering a volume
-    vtkNew<vtkVolumeProperty> _volumeProperty;
-    // Reader for first buffer
-    vtkSmartPointer<vtkImageReader2> _reader;
-    // Reader for second buffer
-    vtkSmartPointer<vtkImageReader2> _preReader;
-    // Scene view elements
-    std::shared_ptr<Representation> _representation;
-    // App sliders
-    std::shared_ptr<Sliders> _sliders;
-    // App callbacks
-    std::shared_ptr<Callbacks> _callbacks;
-    // Twin of the drill
-    std::shared_ptr<Drill> _drill;
-    // Is an object that controls the rendering process for objects
-    vtkNew<vtkRenderer> _renderer;
-    // A window in a graphical user interface where renderers draw their images
-    vtkSmartPointer<vtkRenderWindow> _renderWindow;
-
+    vtkNew<vtkVolumeProperty> volumeProperty;
 public:
     vtkTypeMacro(SceneVtkData, vtkObject);
 
@@ -61,7 +40,7 @@ public:
     /// <param name="param[in] dataSet The data set to add"></param>
     void AddDataSet(vtkSmartPointer<vtkImageReader2> dataSet);
     /// <summary>
-    /// Setup _renderer, _renderWindow, _interactor
+    /// Setup renderer, _renderWindow, interactor
     /// </summary>
     void SetupRender();
     /// <summary>
@@ -82,17 +61,9 @@ public:
     /// </summary>
     void CreateRepresentations() noexcept;
     /// <summary>
-    /// Create twin of the drill
-    /// </summary>
-    void CreateDrill() noexcept;
-    /// <summary>
     /// Remove all callbacks in the app
     /// </summary>
     void RemoveCallbacks() const;
-    /// <summary>
-    /// Create all sliders in the app
-    /// </summary>
-    void CreateSliders() noexcept;
     /// <summary>
     /// Create all callbacks in the app
     /// </summary>
@@ -127,16 +98,33 @@ public:
     [[nodiscard]] bool CheckReader(vtkSmartPointer<vtkDICOMReader> reader, vtkSmartPointer<vtkImageReader2> dataSet);
 
 public:
-    template<class T>
+    template<class TCallback>
     void Execute()
     {
         if(_callbacks) {
-            AbstractCallback* callback_ = _callbacks->GetCallback<T>();
-            if (callback_) {
-                callback_->Execute(nullptr, NULL, nullptr);
+            AbstractCallback* callback = _callbacks->GetCallback<TCallback>();
+            if (callback) {
+                callback->Execute(nullptr, NULL, nullptr);
             }
         }
     }
+private:
+    // Window background color
+    const double _backgroundColor[3];
+    // Represents a volume (data & properties) in a rendered scene
+    vtkNew<vtkVolume> _volume;
+    // Reader for first buffer
+    vtkSmartPointer<vtkImageReader2> _reader;
+    // Reader for second buffer
+    vtkSmartPointer<vtkImageReader2> _preReader;
+    // Scene view elements
+    std::shared_ptr<Representation> _representation;
+    // App callbacks
+    std::shared_ptr<Callbacks> _callbacks;
+    // Is an object that controls the rendering process for objects
+    vtkNew<vtkRenderer> _renderer;
+    // A window in a graphical user interface where renderers draw their images
+    vtkSmartPointer<vtkRenderWindow> _renderWindow;
 };
 
 #endif

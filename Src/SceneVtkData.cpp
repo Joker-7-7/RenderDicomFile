@@ -1,6 +1,5 @@
 #include "SceneVtkData.hpp"
-
-#include "DicomRenderModule/LayersConfiguration.hpp"
+#include "Src/DicomRenderModule/SceneInteractionParameters/LayersConfiguration.hpp"
 
 #include <vtkNew.h>
 #include <vtkProperty.h>
@@ -8,31 +7,30 @@
 #include <vtkPiecewiseFunction.h>
 #include <vtkColorTransferFunction.h>
 #include <vtkGPUVolumeRayCastMapper.h>
-
-
 #include <vtkGlobFileNames.h>
 #include <vtkDICOMDirectory.h>
 #include <vtkDICOMImageReader.h>
 
 SceneVtkData::SceneVtkData() :
-            _backgroundColor{0.3, 0.3, 0.3}
+    _backgroundColor{0.3, 0.3, 0.3}
 {
 }
 
-void SceneVtkData::InitSceneVTKData(vtkRenderWindow *renderWindow)
-{
+void SceneVtkData::InitSceneVTKData(vtkRenderWindow* renderWindow) {
+#ifdef _DEBUG
+#else
+    vtkObject::GlobalWarningDisplayOff();
+#endif
+
     _renderWindow = renderWindow;
     SetupRender();
     SetupGPU();
 
-    CreateDrill();
     CreateRepresentations();
-    CreateSliders();
     CreateCallbacks();
 }
 
-void SceneVtkData::SetupRender()
-{
+void SceneVtkData::SetupRender() {
     vtkNew<vtkInteractorStyleTrackballCamera> style;
     style->SetDefaultRenderer(_renderer);
 
@@ -44,25 +42,24 @@ void SceneVtkData::SetupRender()
     _renderer->SetBackground(_backgroundColor);
 }
 
-void SceneVtkData::SetupGPU() const noexcept
-{
+void SceneVtkData::SetupGPU() const noexcept {
     // Setup Volume property
     vtkNew<vtkColorTransferFunction> m_ptrColorFunction;
     vtkNew<vtkPiecewiseFunction> m_ptrOpacityFunction;
-    _volumeProperty->SetColor(m_ptrColorFunction);
-    _volumeProperty->SetScalarOpacity(m_ptrOpacityFunction);
-    _volumeProperty->SetInterpolationTypeToLinear();
-    _volumeProperty->ShadeOn();
-    _volumeProperty->SetAmbient(0.15);
-    _volumeProperty->SetDiffuse(0.8);
-    _volumeProperty->SetSpecular(0.25);
-    _volumeProperty->SetSpecularPower(40);
+    volumeProperty->SetColor(m_ptrColorFunction);
+    volumeProperty->SetScalarOpacity(m_ptrOpacityFunction);
+    volumeProperty->SetInterpolationTypeToLinear();
+    volumeProperty->ShadeOn();
+    volumeProperty->SetAmbient(0.15);
+    volumeProperty->SetDiffuse(0.8);
+    volumeProperty->SetSpecular(0.25);
+    volumeProperty->SetSpecularPower(40);
 
-    _volume->SetProperty(_volumeProperty);
+    LayersConfiguration::SetColorAndOpacityFunction(volumeProperty, viewSettings.lLevel, viewSettings.wLevel);
+    _volume->SetProperty(volumeProperty);
 }
 
-void SceneVtkData::AddDataSet(vtkSmartPointer<vtkImageReader2> reader)
-{
+void SceneVtkData::AddDataSet(vtkSmartPointer<vtkImageReader2> reader) {
     RemoveDataSet();
     RemoveCallbacks();
 
@@ -75,23 +72,21 @@ void SceneVtkData::AddDataSet(vtkSmartPointer<vtkImageReader2> reader)
     mapper->SetMaximumImageSampleDistance(1.0);
     mapper->UseJitteringOn();
 
-    _volume->SetProperty(_volumeProperty);
+    _volume->SetProperty(volumeProperty);
     _volume->SetMapper(mapper);
 
     _renderer->AddVolume(_volume);
     _renderer->ResetCamera();
 }
 
-void SceneVtkData::RemoveDataSet() const
-{
-    vtkProp* volume = _renderer->GetVolumes()->GetLastProp();
+void SceneVtkData::RemoveDataSet() const {
+    vtkProp *volume = _renderer->GetVolumes()->GetLastProp();
     if (volume != nullptr) {
         _renderer->RemoveVolume(volume);
     }
 }
 
-void SceneVtkData::SetupReader(vtkSmartPointer<vtkImageReader2> reader)
-{
+void SceneVtkData::SetupReader(vtkSmartPointer<vtkImageReader2> reader) {
     _representation->SetReader(reader);
     // save reader in first buffer
     _reader = reader;
@@ -101,8 +96,7 @@ void SceneVtkData::SetupReader(vtkSmartPointer<vtkImageReader2> reader)
     _preReader = newReaderCopy;
 }
 
-bool SceneVtkData::OpenDirectory(QString directory)
-{
+bool SceneVtkData::OpenDirectory(QString directory) {
     vtkSmartPointer<vtkImageReader2> dataSet = nullptr;
     QString directoryName = directory.remove(0, 8);
 
@@ -118,8 +112,7 @@ bool SceneVtkData::OpenDirectory(QString directory)
     directoryReader->SetInputFileNames(globFileNames->GetFileNames());
     directoryReader->Update();
 
-    if (directoryReader->GetNumberOfSeries() == 0)
-    {
+    if (directoryReader->GetNumberOfSeries() == 0) {
         return false;
     }
 
@@ -130,11 +123,11 @@ bool SceneVtkData::OpenDirectory(QString directory)
 
     return CheckReader(reader, dataSet);
 }
-bool SceneVtkData::OpenSingleFile(QString singleFile)
-{
+
+bool SceneVtkData::OpenSingleFile(QString singleFile) {
     vtkSmartPointer<vtkImageReader2> dataSet = nullptr;
     // Open file
-    QString fileName = singleFile.remove(0,8);
+    QString fileName = singleFile.remove(0, 8);
 
     vtkNew<vtkDICOMReader> fileReader;
     fileReader->SetFileName(fileName.toStdString().c_str());
@@ -145,13 +138,12 @@ bool SceneVtkData::OpenSingleFile(QString singleFile)
 }
 
 
-bool SceneVtkData::CheckReader(vtkSmartPointer<vtkDICOMReader> reader, vtkSmartPointer<vtkImageReader2> dataSet)
-{
+bool SceneVtkData::CheckReader(vtkSmartPointer<vtkDICOMReader> reader, vtkSmartPointer<vtkImageReader2> dataSet) {
     if (reader->GetErrorCode() == 0)
         dataSet = reader;
 
     // Add data set to 3D view
-    if (dataSet){
+    if (dataSet) {
         AddDataSet(dataSet);
         return true;
     }
@@ -159,53 +151,33 @@ bool SceneVtkData::CheckReader(vtkSmartPointer<vtkDICOMReader> reader, vtkSmartP
     return false;
 }
 
-void SceneVtkData::ZoomToExtent() const noexcept
-{
+void SceneVtkData::ZoomToExtent() const noexcept {
     _renderer->ResetCamera();
 }
 
-void SceneVtkData::CreateRepresentations() noexcept
-{
+void SceneVtkData::CreateRepresentations() noexcept {
     _representation = std::make_shared<Representation>(_renderWindow->GetInteractor(), _renderer.Get());
 }
 
-void SceneVtkData::CreateDrill() noexcept
-{
-    _drill = std::make_shared<Drill>(_renderer);
-}
-
-void SceneVtkData::CreateCallbacks() noexcept
-{
+void SceneVtkData::CreateCallbacks() noexcept {
     _callbacks = std::make_shared<Callbacks>();
 }
 
-void SceneVtkData::CreateSliders() noexcept
-{
-    _sliders = std::make_shared<Sliders>(_renderWindow->GetInteractor(), _volumeProperty);
-    LayersConfiguration::SetColorAndOpacityFunction(_volumeProperty, _slidersValue.Slider_L, _slidersValue.Slider_W);
-}
 
-
-void SceneVtkData::SetupCallbacks()
-{
-    _callbacks->_callbacksData._volume = _volume.Get();
-    _callbacks->_callbacksData._representation = _representation.get();
-    _callbacks->_callbacksData._sliders = _sliders.get();
-    _callbacks->_callbacksData._drill = _drill.get();
-    _callbacks->_callbacksData._reader = _reader.Get();
-    _callbacks->_callbacksData._preReader = _preReader.Get();
-    _callbacks->_callbacksData._volumeProperty = _volumeProperty.Get();
-    _callbacks->_callbacksData._interactor = _renderWindow->GetInteractor();
-    _callbacks->_callbacksData._renderer = _renderer.Get();
+void SceneVtkData::SetupCallbacks() {
+    _callbacks->callbacksData.volume = _volume.Get();
+    _callbacks->callbacksData.representation = _representation.get();
+    _callbacks->callbacksData.reader = _reader.Get();
+    _callbacks->callbacksData.preReader = _preReader.Get();
+    _callbacks->callbacksData.volumeProperty = volumeProperty.Get();
+    _callbacks->callbacksData.interactor = _renderWindow->GetInteractor();
+    _callbacks->callbacksData.renderer = _renderer.Get();
 
     _callbacks->SetupCallbacks();
 }
 
-void SceneVtkData::RemoveCallbacks() const
-{
-    _representation->_boxWidget->RemoveAllObservers();
-    _sliders->_sliderWidget_L->RemoveAllObservers();
-    _sliders->_sliderWidget_W->RemoveAllObservers();
+void SceneVtkData::RemoveCallbacks() const {
+    _representation->boxWidget->RemoveAllObservers();
     _callbacks->DisconnectCallbacks();
 }
 
