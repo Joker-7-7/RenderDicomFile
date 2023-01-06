@@ -1,19 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
-    </qresource>
-    <qresource prefix="/Assets">
-        <file alias="arrow.png">Assets/arrow.png</file>
-        <file alias="camera.png">Assets/camera.png</file>
-        <file alias="cube.png">Assets/cube.png</file>
-        <file alias="drill.png">Assets/drill.png</file>
-        <file alias="face.png">Assets/face.png</file>
-        <file alias="jaw.png">Assets/jaw.png</file>
-        <file alias="mpr.png">Assets/mpr.png</file>
-        <file alias="protractor.png">Assets/protractor.png</file>
-        <file alias="ruler.png">Assets/ruler.png</file>
-        <file alias="skull.png">Assets/skull.png</file>
-        <file alias="smoothing.png">Assets/smoothing.png</file>
-        <file alias="xray.png">Assets/xray.png</file>
+        <file alias="main.qml">main.qml</file>
     </qresource>
 </RCC>

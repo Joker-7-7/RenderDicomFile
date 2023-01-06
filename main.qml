@@ -38,7 +38,7 @@ Window {
         id: fileDialog
         nameFilters: ["*.dcm"]
         onAccepted: function() {
-            scene.OnClickButtonOpenFile(selectedFile);
+            scene.OnOpenFileClicked(selectedFile);
             indicator.running = false;
         }
         onRejected: indicator.running = false;
@@ -47,7 +47,7 @@ Window {
     FolderDialog {
         id: folderDialog
         onAccepted: function() {
-            scene.OnClickButtonOpenDirectory(selectedFolder);
+            scene.OnOpenDirectoryClicked(selectedFolder);
             indicator.running = false;
         }
         onRejected: indicator.running = false;
@@ -87,39 +87,38 @@ Window {
             }
 
             Button {
-                onClicked: { scene.OnClickButtonRuler()}
-                 icon.source: "qrc:/Assets/ruler.png"
+                onClicked: { scene.OnRulerClicked()}
+                 text: "Ruler"
             }
 
             Button {
-                onClicked: { scene.OnClickButtonBoxRep()}
-                 icon.source: "qrc:/Assets/cube.png"
+                onClicked: { scene.OnBoxRepresentationClicked()}
+                 text: "Cube"
             }
 
             Button {
-                onClicked: { scene.OnClickButtonTeethConfig()}
-                 icon.source: "qrc:/Assets/jaw.png"
+                onClicked: { scene.OnTeethConfigClicked()}
+                 text: "Jaw"
             }
 
             Button {
-                onClicked: { scene.OnClickButtonSolidConfig()}
-                 icon.source: "qrc:/Assets/skull.png"
+                onClicked: { scene.OnSolidConfigClicked()}
+                text: "Scull"
             }
 
             Button {
-                onClicked: { scene.OnClickButtonSkinConfig()}
-                 icon.source: "qrc:/Assets/face.png"
+                onClicked: { scene.OnSkinConfigClicked()}
+                 text: "Face"
             }
 
             Button {
-                onClicked: { scene.OnClickButtonJitteringMode()}
-                 icon.source: "qrc:/Assets/smoothing.png"
+                onClicked: { scene.OnJitteringModeClicked()}
+                 text: "Smoothing"
             }
 
             Button {
                 text: "Zoom camera"
-                onClicked: { scene.OnClickButtonResetCamera()}
-                 icon.source: "qrc:/Assets/arrow.png"
+                onClicked: { scene.OnResetCameraClicked()}
             }
         }
     }
